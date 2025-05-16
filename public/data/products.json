@@ -1,0 +1,110 @@
+[
+  {
+    "id": 1,
+    "product": "Manzana",
+    "description": "Fruta roja, crujiente y dulce, procedencia: Rio Negro.",
+    "price": 1500,
+    "stock": 500,
+    "img": "/images/manzana.jpeg",
+    "category": "Frutas"
+  },
+  {
+    "id": 2,
+    "product": "Banana",
+    "description": "Fruta amarilla con alto contenido de potasio, origen: Brasil.",
+    "price": 900,
+    "stock": 400,
+    "img": "/images/banana.jpeg",
+    "category": "Frutas"
+  },
+  {
+    "id": 3,
+    "product": "Naranja",
+    "description": "Fruta cítrica rica en vitamina C, procedencia: Salta.",
+    "price": 550,
+    "stock": 3000,
+    "img": "/images/naranja.jpeg",
+    "category": "Frutas"
+  },
+  {
+    "id": 4,
+    "product": "Pera",
+    "description": "Fruta jugosa con piel verde o amarilla, origen: Corrientes.",
+    "price": 1300,
+    "stock": 200,
+    "img": "/images/pera.jpeg",
+    "category": "Frutas"
+  },
+  {
+    "id": 5,
+    "product": "Tomate",
+    "description": "Perita ideal para ensaladas, procedencia: Tucuman.",
+    "price": 2500,
+    "stock": 600,
+    "img": "/images/tomate.jpeg",
+    "category": "Frutas"
+  },
+  {
+    "id": 6,
+    "product": "Sandía",
+    "description": "Fruta grande y refrescante con alto contenido de agua.",
+    "price": 350,
+    "stock": 1000,
+    "img": "/images/sandia.jpeg",
+    "category": "Frutas"
+  },
+  {
+    "id": 7,
+    "product": "Pelon",
+    "description": "Fruta tropical con pulpa dulce y jugosa.",
+    "price": 2050,
+    "stock": 250,
+    "img": "/images/pelon.jpg",
+    "category": "Frutas"
+  },
+  {
+    "id": 8,
+    "product": "Frambuesa",
+    "description": "Fruta roja con alto poder antioxidante.",
+    "price": 3800,
+    "stock": 150,
+    "img": "/images/frambuesa.jpg",
+    "category": "Frutas"
+  },
+  {
+    "id": 9,
+    "product": "Fresas",
+    "description": "Frutas pequeñas y rojas con sabor dulce.",
+    "price": 2200,
+    "stock": 350,
+    "img": "/images/frutilla.jpeg",
+    "category": "Frutas"
+  },
+  {
+    "id": 10,
+    "product": "Limon",
+    "description": "Fruta con alto contenido de vitamina C, origen: San Juan.",
+    "price": 290,
+    "stock": 2000,
+    "img": "/images/limon.jpg",
+    "category": "Frutas"
+  },
+  {
+    "id": 11,
+    "product": "Granada",
+    "description": "Fruta con alto contenido de vitaminas B, E, ideal para reposteria.",
+    "price": 4900,
+    "stock": 200,
+    "img": "/images/granada.jpg",
+    "category": "Frutas"
+  },
+  {
+    "id": 12,
+    "product": "Arandano",
+    "description": "Fruta roja con alto poder antioxidante, origen: Neuquen.",
+    "price": 15900,
+    "stock": 100,
+    "img": "/images/arandano.jpg",
+    "category": "Frutas"
+  }
+]
