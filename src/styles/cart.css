@@ -39,3 +39,35 @@
   font-size: 24px;
   cursor: pointer;
 }
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #ddd;
+}
+.cart-item img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+}
+.cart-item h3 {
+  margin: 0;
+}
+.cart-item p {
+  margin: 0;
+}
+.cart-item button {
+  background-color: transparent; /* Cambia el fondo a transparente */
+  color: #ff6347; /* Aplica el color rojo al ícono */
+  border: 1px solid #ff6347; /* Agrega un borde rojo */
+  padding: 5px 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cart-item button:hover {
+  background-color: #ff4500;
+  color: white; 
+}

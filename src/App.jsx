@@ -33,10 +33,10 @@ useEffect(() => {
     
       
         <Routes>
-          <Route path="/" element={<Home products={products} loading={loading} />} />
+          <Route path="/" element={<Home cart= {cart} products={products} loading={loading} />} />
           {/* <Route path="/productos" element={<Gallery />} /> */}
-          <Route path="/acerdade" element={<AboutUs />} />
-          <Route path="/contacto" element={<Contacts />} />
+          <Route path="/acerdade" element={<AboutUs cart = {cart} />} />
+          <Route path="/contacto" element={<Contacts cart = {cart} />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       

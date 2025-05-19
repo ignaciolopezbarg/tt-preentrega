@@ -5,7 +5,7 @@ function Cart({cartItems, isOpen, onClose}) {
   return (
     <div className= {`cart-drawer ${isOpen ? "open" : ""}`}>
       <div className="cart-header">
-        <h1>Carrito de Compras</h1>
+        <h2>Carrito de Compras</h2>
         <button onClick = {onClose} className="close-button  ">X</button>
       </div>
       <div className="cart-content">

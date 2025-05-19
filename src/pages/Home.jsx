@@ -2,23 +2,24 @@ import React from "react";
 import Header from "../components/Header";
 import ProductsList from "../components/ProductsList";
 import Footer from "../components/Footer";
-function Home({ products, loading }) {
+function Home({ cart, products, loading }) {
   return (
     <>
-      <Header />
+      <Header cartItems={cart}/>
+      
       <main className="flex flex-col items-center justify-center min-h-screen ">
         <h1 className="text-2xl font-bold mb-4 text-center">
           Bienvenidos a Fruteria-Verduleria Talento-Tech
         </h1>
         
         {loading ? (
-          <div className="flex flex-col items-center">
+          <div className="flex flex-col items-center w-fit">
             <img
               src="/loading.gif"
               alt="Loading..."
-              className="w-64 h-64
-               mb-4"
-            />
+              className="w-fit h-96 object-cover rounded-md shadow-md  mb-4"/>
+              "
+            
             <p className="text-lg font-medium text-gray-700">Cargando...</p>
           </div>
         ) : (
