@@ -17,7 +17,7 @@ function Header({cartItems}) {
         <nav>
             <ul className="flex flex-row gap-20 text-lg font-bold text-slate-800">
                 <li> <Link to = '/'> Home </Link> </li>
-                {/* <li> <Link to = '/productos'> Gallery </Link> </li> */}
+                <li> <Link to = '/descuentos'> Descuentos </Link> </li>
                 <li> <Link to = '/acerdade'> AboutUs </Link> </li> 
                 <li> <Link to = '/contacto'> Contacts </Link> </li>
                 <li className="cart-nav">

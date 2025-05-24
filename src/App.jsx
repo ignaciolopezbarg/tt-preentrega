@@ -2,10 +2,12 @@ import React, { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
 import Home from "./pages/Home";
-// import Gallery from "./pages/Gallery";
+// import Ofertas from "./components/Ofertas";
 import AboutUs from "./pages/AboutUs";
 import Contacts from "./pages/Contacts";
 import NotFound from "./pages/NotFound";
+import FechaDescuento from "./pages/FechaDescuento";
+
 
 function App() {
   const [cart, setCart] = useState([]);
@@ -34,7 +36,7 @@ useEffect(() => {
       
         <Routes>
           <Route path="/" element={<Home cart= {cart} products={products} loading={loading} />} />
-          {/* <Route path="/productos" element={<Gallery />} /> */}
+          <Route path="/descuentos" element={<FechaDescuento cart = {cart} />} />
           <Route path="/acerdade" element={<AboutUs cart = {cart} />} />
           <Route path="/contacto" element={<Contacts cart = {cart} />} />
           <Route path="*" element={<NotFound />} />

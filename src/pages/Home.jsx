@@ -2,6 +2,9 @@ import React from "react";
 import Header from "../components/Header";
 import ProductsList from "../components/ProductsList";
 import Footer from "../components/Footer";
+// import Ofertas from "../components/Ofertas";
+import FechaDescuento from "./FechaDescuento";
+
 function Home({ cart, products, loading }) {
   return (
     <>
@@ -17,14 +20,15 @@ function Home({ cart, products, loading }) {
             <img
               src="/loading.gif"
               alt="Loading..."
-              className="w-fit h-96 object-cover rounded-md shadow-md  mb-4"/>
+              className="w-fit h-64 object-cover rounded-md shadow-md  mb-4"/>
               "
             
-            <p className="text-lg font-medium text-gray-700">Cargando...</p>
+            <p className="text-5xl font-medium text-gray-700">Cargando...</p>
           </div>
         ) : (
           <ProductsList products={products} />
         )}
+       
         <Footer />
       </main>
     </>
