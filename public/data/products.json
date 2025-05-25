@@ -24,7 +24,7 @@
     "price": 550,
     "stock": 3000,
     "img": "/images/naranja.jpeg",
-    "category": "Frutas"
+    "category": "Citricos"
   },
   {
     "id": 4,
@@ -87,7 +87,7 @@
     "price": 290,
     "stock": 2000,
     "img": "/images/limon.jpg",
-    "category": "Frutas"
+    "category": "Citricos"
   },
   {
     "id": 11,
