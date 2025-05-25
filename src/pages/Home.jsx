@@ -2,8 +2,7 @@ import React from "react";
 import Header from "../components/Header";
 import ProductsList from "../components/ProductsList";
 import Footer from "../components/Footer";
-// import Ofertas from "../components/Ofertas";
-import FechaDescuento from "./FechaDescuento";
+
 
 function Home({ cart, products, loading }) {
   return (

@@ -1,5 +1,5 @@
 import React from 'react'
-import BotonOfertas from './BotonOfertas';
+import BotonOfertas from '../components/BotonOfertas';
 
 const articulos = [
   "frutas",

@@ -108,6 +108,9 @@ const FechaDescuento = ({ cart }) => {
           las zonas y sus barrios correspondientes. ¡Aprovecha las ofertas del
           día!
         </p>
+        <p className="text-gray-700 mb-4 text-center">
+          <span className="font-bold bg-slate-300 rounded-lg p-3">Los dias domingos NO hay descuentos</span>
+        </p>
         <h2 className="text-lg font-bold mb-2">Zonas y Barrios</h2>
         <table className="table-auto w-full border-collapse border border-gray-300">
           <thead>

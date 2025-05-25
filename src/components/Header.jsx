@@ -18,7 +18,7 @@ function Header({cartItems}) {
             <ul className="flex flex-row gap-20 text-lg font-bold text-slate-800">
                 <li> <Link to = '/'> Home </Link> </li>
                 <li> <Link to = '/descuentos'> Descuentos </Link> </li>
-                <li> <Link to = '/acerdade'> AboutUs </Link> </li> 
+                <li> <Link to = '/acercade'> AboutUs </Link> </li> 
                 <li> <Link to = '/contacto'> Contacts </Link> </li>
                 <li className="cart-nav">
                   <button onClick={() => setIsCartOpen(true)} className="bg-red-400 w-14 h-14 rounded-full shadow-xl"> <i className="material-icons">shopping_cart</i>
