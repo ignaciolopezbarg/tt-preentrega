@@ -7,6 +7,7 @@ import NotFound from "./pages/NotFound";
 import FechaDescuento from "./pages/FechaDescuento";
 import ProductDetail from "./components/ProductDetail";
 import AboutUs from "./pages/AboutUs";
+import Cart from "./components/Cart";
 
 function App() {
   const [cart, setCart] = useState([]);
@@ -30,15 +31,64 @@ function App() {
     }, 2000);
   }, []);
 
+  const handleAddToCart = (product) => {
+    const productInCart = cart.find((item) => item.id === product.id);
+if (productInCart) {
+  setCart(cart.map((item) => item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item));
+} else {
+  setCart([...cart, { ...product, quantity: 1 }]);
+}
+  };
+
+  //   const removeFromCart = (productId) => {
+  //   setCart((prevCart) =>
+  //     prevCart
+  //       .map((item) =>
+  //         item.id === productId
+  //           ? item.quantity > 1
+  //             ? { ...item, quantity: item.quantity - 1 } // Reduce la cantidad
+  //             : null // Elimina el producto si la cantidad es 1
+  //           : item
+  //       )
+  //       .filter((item) => item !== null) // Filtra los productos eliminados
+  //   );
+  // };
+
+  const removeFromCart = (productId) => {
+  setCart((prevCart) =>
+    prevCart.filter((item) => item.id !== productId) // Filtra el producto a eliminar
+  );
+};
+
+const incrementQuantity = (productId) => {
+  setCart((prevCart) =>
+    prevCart.map((item) =>
+      item.id === productId ? { ...item, quantity: item.quantity + 1 } : item
+    )
+  );
+};
+
+const decrementQuantity = (productId) => {
+  setCart((prevCart) =>
+    prevCart
+      .map((item) =>
+        item.id === productId
+          ? { ...item, quantity: item.quantity > 1 ? item.quantity - 1 : 1 }
+          : item
+      )
+      .filter((item) => item.quantity > 0) // Elimina productos con cantidad 0
+  );
+};
+
   return (
     <Routes>
       <Route
         path="/"
-        element={<Home cart={cart} products={products} loading={loading} />}
+        element={<Home agregarCarrito={handleAddToCart} quitarDelCarrito= {removeFromCart} incrementarCantidad={incrementQuantity} decrementarCantidad= {decrementQuantity} cart={cart} products={products} loading={loading} />}
       />
-      <Route path="/descuentos" element={<FechaDescuento cart={cart} />} />
-      <Route path="/acercade" element={<AboutUs cart={cart} />} />
-      <Route path="/contacto" element={<Contacts cart={cart} />} />
+      <Route path="/descuentos" element={<FechaDescuento cart={cart} quitarDelCarrito= {removeFromCart} />} />
+      <Route path="/acercade" element={<AboutUs cart={cart} quitarDelCarrito = {removeFromCart} />} />
+      <Route path="/contacto" element={<Contacts cart={cart} quitarDelCarrito = {removeFromCart} />} />
       <Route path="*" element={<NotFound />} />
 
       {/* Rutas dinamicas */}
@@ -57,5 +107,6 @@ function App() {
     </Routes>
   );
 }
+  
 
 export default App;

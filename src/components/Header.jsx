@@ -4,7 +4,7 @@ import Modo from "./Modo"
 import Cart from "./Cart"
 import "../styles/cart.css"
 
-function Header({cartItems}) {
+function Header({cartItems, quitarDelCarrito}) {
   const[isCartOpen, setIsCartOpen] = useState(false);
 
   return (
@@ -15,15 +15,23 @@ function Header({cartItems}) {
         {/* <p className="text-lg font-semibold ">Calidad-Precios Imbatibles- Entrega a Domicilio</p> */}
       </div>
         <nav>
-            <ul className="flex flex-row gap-20 text-lg font-bold text-slate-800">
-                <li> <Link to = '/'> Home </Link> </li>
-                <li> <Link to = '/descuentos'> Descuentos </Link> </li>
-                <li> <Link to = '/acercade'> AboutUs </Link> </li> 
-                <li> <Link to = '/contacto'> Contacts </Link> </li>
+            <ul className="flex flex-row gap-8 text-lg font-bold text-slate-800">
+                <li className="hover:text-blue-500"> <Link to = '/'> Home </Link> </li>
+                <li className="hover:text-blue-500"> <Link to = '/descuentos'> Descuentos </Link> </li>
+                <li className="hover:text-blue-500" > <Link to = '/acercade'> AboutUs </Link> </li> 
+                <li className="hover:text-blue-500"> <Link to = '/contacto'> Contacts </Link> </li>
+
                 <li className="cart-nav">
-                  <button onClick={() => setIsCartOpen(true)} className="bg-red-400 w-14 h-14 rounded-full shadow-xl"> <i className="material-icons">shopping_cart</i>
+                  <button onClick={() => setIsCartOpen(true)} className="bg-red-400 w-14 h-14 rounded-full shadow-xl relative"> <i className="material-icons">shopping_cart</i>
+                    {cartItems.length > 0 && (
+                <span className="absolute top-0 right-0 bg-green-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
+                  {cartItems.reduce((total, item) => total + item.quantity, 0)}
+                </span>
+              )}
                   </button>
-                  <Cart cartItems={cartItems} isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
+                  {isCartOpen && (
+                  <Cart quitarDelCarrito = {quitarDelCarrito}  cartItems={cartItems} isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
+                  )}
                 </li>
                
                                                              

@@ -31,7 +31,7 @@ const zonas = [
   },
 ];
 
-const FechaDescuento = ({ cart }) => {
+const FechaDescuento = ({ cart, quitarDelCarrito }) => {
   const [zona, setZona] = useState(null);
 
   function obtenerDiaHoy() {
@@ -100,7 +100,7 @@ const FechaDescuento = ({ cart }) => {
 
   return (
     <div>
-      <Header cartItems={cart} />
+       <Header cartItems={cart} quitarDelCarrito = {quitarDelCarrito} />
       <div className="bg-gray-100 p-4 rounded-lg shadow-md mb-4">
         <p className="text-gray-700 bold mb-4">
           Bienvenido/a. En esta página podrás consultar los descuentos
@@ -111,23 +111,27 @@ const FechaDescuento = ({ cart }) => {
         <p className="text-gray-700 mb-4 text-center">
           <span className="font-bold bg-slate-300 rounded-lg p-3">Los dias domingos NO hay descuentos</span>
         </p>
-        <h2 className="text-lg font-bold mb-2">Zonas y Barrios</h2>
+        <h2 className="text-lg font-bold mb-2 text-center">Zonas y Barrios</h2>
         <table className="table-auto w-full border-collapse border border-gray-300">
           <thead>
             <tr className="bg-gray-200">
-              <th className="border border-gray-300 px-4 py-2 text-left text-gray-950 bold">Zona</th>
-              <th className="border border-gray-300 px-4 py-2 text-left text-gray-950 bold">Barrios</th>
+              <th className="border border-gray-300 px-4 py-2 text-center text-gray-950 bold  ">Barrios</th>
+              <th className="border border-gray-300 px-4 py-2 text-center text-gray-950 bold ">Zona</th>
+              <th className="border border-gray-300 px-4 py-2 text-center text-gray-950 bold ">Dias</th>
             </tr>
           </thead>
           <tbody>
             {zonas.map((zona) => (
               <tr key={zona.zona} className="hover:bg-gray-100 text-blue-700">
-                <td className="border border-gray-300 px-4 py-2 text-gray-800 font-bold">
+                <td className="border border-gray-300 px-4 py-2 text-gray-800 font-bold text-center">
                   Zona {zona.zona}
                 </td>
-                <td className="border border-gray-300 px-4 py-2">
+                <td className="border border-gray-300 px-4 py-2 text-center">
                   {zona.descripcion}
                 </td>
+                <td className="border border-gray-300 px-4 py-2 text-center">
+  {zona.descuentos.map((d) => d.dia).join(", ")}
+</td>
               </tr>
             ))}
           </tbody>

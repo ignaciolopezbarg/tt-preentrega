@@ -4,10 +4,10 @@ import ProductsList from "../components/ProductsList";
 import Footer from "../components/Footer";
 
 
-function Home({ cart, products, loading }) {
+function Home({ cart, products, loading, agregarCarrito, quitarDelCarrito, incrementarCantidad, decrementarCantidad }) {
   return (
     <>
-      <Header cartItems={cart}/>
+      <Header cartItems={cart} quitarDelCarrito={quitarDelCarrito} />
       
       <main className="flex flex-col items-center justify-center min-h-screen ">
         <h1 className="text-2xl font-bold mb-4 text-center">
@@ -25,7 +25,7 @@ function Home({ cart, products, loading }) {
             <p className="text-5xl font-medium text-gray-700">Cargando...</p>
           </div>
         ) : (
-          <ProductsList products={products} />
+          <ProductsList products={products} agregarCarrito = {agregarCarrito} incrementarCantidad = {incrementarCantidad} decrementarCantidad = {decrementarCantidad} />
         )}
        
         <Footer />

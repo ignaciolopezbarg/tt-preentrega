@@ -1,8 +1,12 @@
 import React from "react";
 import { motion } from "framer-motion";
 
-function ProductsList({ products }) {
-
+function ProductsList({
+  products,
+  agregarCarrito,
+  incrementarCantidad,
+  decrementarCantidad,
+}) {
   return (
     <>
       <h1 className="text-2xl font-bold mb-4 text-center">Galería de Productos</h1>
@@ -34,22 +38,36 @@ function ProductsList({ products }) {
               </span>
               <p className="text-sm">Stock: {product.stock} kg</p>
               <p className="text-sm font-medium">Categoría: {product.category}</p>
-              <section gap-8>
-                <button className="bg-slate-100 w-12 h-8 border-4 text-xl  text-gray-800 rounded-md hover:bg-slate-200 ">-</button>
-                <span></span>
-                <button className= "bg-slate-100 w-12 h-8 border-4 text-xl text-gray-800 rounded-md hover:bg-slate-200 " >+</button>
+              <section className="flex items-center gap-4 mt-4">
+                {/* Botón para restar cantidad */}
+                <button
+                  className="bg-slate-100 w-12 h-8 border-4 text-xl text-gray-800 rounded-md hover:bg-slate-200"
+                  onClick={() => decrementarCantidad(product.id)}
+                >
+                  -
+                </button>
+
+                {/* Mostrar cantidad actual */}
+                <span className="text-lg font-bold">
+                  {product.quantity || 0}
+                </span>
+
+                {/* Botón para sumar cantidad */}
+                <button
+                  className="bg-slate-100 w-12 h-8 border-4 text-xl text-gray-800 rounded-md hover:bg-slate-200"
+                  onClick={() => incrementarCantidad(product.id)}
+                >
+                  +
+                </button>
               </section>
               <section className="flex flex-row gap-20">
                 <button
                   className="mt-3 px-4 py-2 bg-red-400 text-white rounded-lg hover:bg-blue-500 transition duration-500"
-                  onClick={() => console.log(`Producto agregado: ${product.product}`)}
+                  onClick={() => agregarCarrito(product)}
                 >
                   Agregar al Carrito
                 </button>
               </section>
-              <div>
-
-              </div>
             </motion.li>
           ))}
         </motion.ul>
