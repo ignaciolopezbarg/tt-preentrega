@@ -1,0 +1,58 @@
+Libreria para trabajar con fechas, en forma MODULAR, solo bajo lo que voy a usar.
+JavaScript dates in a browser & Node.js.
+se carga con npm install date-fns
+
+1.- Parsear fecha:
+Convertir fecha de formato string a objectDate
+import {parse} from 'date-fns'
+const fechastring = "2025-4-25";
+const fecha = parse(fechastring.'yyyy-MM-dd'.newDate());
+console.log(fecha);
+
+2.- Diferencias entre fechas:
+import {differenceInDays} from 'date-fns';
+const fecha1 = newDate(2025,3,11);
+const fecha2 = newDate(2025,12,11);
+const diferenciaDias = differenceInDays(fecha2,fecha1);
+console.log(diferenciaDias);
+
+3.- Obtener mes o año de una fecha:
+import { getMonth, getYear} from 'date-fns';
+const fecha = newDate(2025,3,7);
+console.log(getMonth(fecha));
+console.log(getYear(fecha));
+
+4.- Obtener primer dia de la semana ( lunes o el que sea):
+import { startofweek } from 'date-fns';
+const fecha = newDate(2025,3,7);
+const inicioSemana = startofweek( fecha, {weekstartson: 1}); (seria el lunes)
+console.log(inicioSemana);
+
+5.- Formato de la fecha: dependiendo del idioma (ejemplo español):
+import { format } from 'date-fns';
+import { es } from 'date-fns/locale';
+const fecha = newDate(2025,3,7);
+console.log(format(fecha, 'eeee, MMMM d, yyyy, {locale: es}));
+//'lunes, Marzo 7, 2025'
+
+6.- Comprobar si una fecha cae en fin de semana(sabado o domingo):
+import { isWeekend } from 'date-fns';
+const fecha = newDate(2025,3,7);
+console.log(isWeekend(fecha)); //true or false.
+
+etcccccccccccccccccccccc en la docu de la pagina hay un monton +++++++++++
+Ej compareAsc (le doy varias fechas y las ordena en forma ascendente, lo uso con format) import { format, compareAsc } from "date-fns";
+format(new Date(2014, 1, 11), "MM/dd/yyyy");
+//=> '02/11/2014'
+
+const dates = [
+  new Date(1995, 6, 2),
+  new Date(1987, 1, 11),
+  new Date(1989, 6, 10),
+];
+dates.sort(compareAsc);
+//=> [
+//   Wed Feb 11 1987 00:00:00,
+//   Mon Jul 10 1989 00:00:00,
+//   Sun Jul 02 1995 00:00:00
+// ] este ejemplo esta en la docu
