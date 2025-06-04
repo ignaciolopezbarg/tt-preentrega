@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { ThemeContext } from "./context/ThemeContext";
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
 import Login from "./pages/Auth/Login";
@@ -13,6 +14,9 @@ import AboutUs from "./pages/AboutUs";
 import Cart from "./components/Cart";
 
 function App() {
+  const {theme} = useContext(ThemeContext);
+  const themeClass = theme === "light" ? "bg-white text-black" : "bg-gray-800 text-white";
+  
   const [cart, setCart] = useState([]);
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);

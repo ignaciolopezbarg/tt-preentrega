@@ -1,12 +1,13 @@
 import { Link } from "react-router-dom";
-import React, {useState} from 'react'
+import React, {useState, useContext} from 'react'
 import Modo from "./Modo"
+import { ThemeContext } from "../context/ThemeContext.jsx";
 import Cart from "./Cart"
 import "../styles/cart.css"
 
 function Header({cartItems, quitarDelCarrito}) {
   const[isCartOpen, setIsCartOpen] = useState(false);
-
+   const { theme, toggleTheme } = useContext(ThemeContext);
   return (
     <header className="bg-gray-300 p-4 flex justify-between items-center">
       <img src="/logo.jpeg" alt="Logo" className="w-48 h-24 rounded-xl shadow-lg " />
