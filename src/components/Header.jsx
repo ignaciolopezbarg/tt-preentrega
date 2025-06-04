@@ -16,7 +16,7 @@ function Header({cartItems, quitarDelCarrito}) {
       </div>
         <nav>
             <ul className="flex flex-row gap-8 text-lg font-bold text-slate-800">
-                <li className="hover:text-blue-500"> <Link to = '/'> Home </Link> </li>
+                <li className="hover:text-blue-500"> <Link to = '/'> Inicio </Link> </li>
                 <li className="hover:text-blue-500"> <Link to = '/descuentos'> Descuentos </Link> </li>
                 <li className="hover:text-blue-500" > <Link to = '/acercade'> AboutUs </Link> </li> 
                 <li className="hover:text-blue-500"> <Link to = '/contacto'> Contacts </Link> </li>

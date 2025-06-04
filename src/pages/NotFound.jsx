@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 function NotFound() {
   return (
     <>
+    <h2>Cargando ...</h2>
       <img
         src="/images/404.png"
         alt="Página no encontrada"
