@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
-import Login from "./Auth/Login";
-import Register from "./Auth/Register";
+import Login from "./pages/Auth/Login";
+import Register from "./pages/Auth/Register";
 import Home from "./pages/Home";
 // import AdminPanel from "./components/AdminPanel";
 import Contacts from "./pages/Contacts";
