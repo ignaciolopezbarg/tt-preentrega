@@ -58,9 +58,9 @@
   margin: 0;
 }
 .cart-item button {
-  background-color: transparent; /* Cambia el fondo a transparente */
-  color: #ff6347; /* Aplica el color rojo al ícono */
-  border: 1px solid #ff6347; /* Agrega un borde rojo */
+  background-color: transparent; 
+  color: #ff6347; 
+  border: 1px solid #ff6347; 
   padding: 5px 10px;
   cursor: pointer;
   display: flex;

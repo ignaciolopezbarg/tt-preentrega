@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { format } from "date-fns";
 import es from "date-fns/locale/es";
-import Header from "../components/Header";
+// import Header from "../components/Header";
 import Footer from "../components/Footer";
 
 const zonas = [
@@ -100,7 +100,7 @@ const FechaDescuento = ({ cart, quitarDelCarrito }) => {
 
   return (
     <div>
-       <Header cartItems={cart} quitarDelCarrito = {quitarDelCarrito} />
+       {/* <Header cartItems={cart} quitarDelCarrito = {quitarDelCarrito} /> */}
       <div className="bg-gray-100 p-4 rounded-lg shadow-md mb-4">
         <p className="text-gray-700 bold mb-4">
           Bienvenido/a. En esta página podrás consultar los descuentos

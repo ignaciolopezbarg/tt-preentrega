@@ -1,0 +1,73 @@
+<h1 class="registro__title">Formulario Registro de Clientes</h1>
+      <p class="registro__parrafo">
+        Para poder realizar cualquier compra, debes estar registrado en el
+        sitio!!
+      </p>
+      <form
+        action="mailto:igna@hot.com"
+        method="get"
+        enctype="multipart/form-data"
+      >
+        <fieldset>
+          <p>
+            <label for="first_name">Nombre:</label>
+            <input
+              type="text"
+              name="first_name"
+              required
+              minlength="3"
+              maxlength="18"
+              placeholder="ingrese su nombre"
+            />
+          </p>
+
+          <p>
+            <label for="last_name">Apellido:</label>
+            <input
+              type="text"
+              name="last_name"
+              required
+              minlength="3"
+              maxlength="18"
+              placeholder="ingrese su apellido"
+            />
+          </p>
+
+          <p>
+            <label for="gender">Genero:</label>
+            <input type="text" name="gender" placeholder="ingrese su genero" />
+          </p>
+
+          <p>
+            <label for="email">Correo electronico:</label>
+            <input
+              type="email"
+              name="email"
+              placeholder="ingrese su email"
+              id="email"
+              required
+              pattern=" ^[a-zA-Z0-9.!#$%&'+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:.[a-zA-Z0-9-]+)$"
+            />
+          </p>
+          <p>
+            <label for="codPostal">Codigo Postal</label>
+            <input
+              type="text"
+              id="codPostal"
+              name="codPostal"
+              required
+              pattern="^[A-Z]{2}[0-9]{4}$"
+              placeholder="ingrese su codigo postal"
+            />
+          </p>
+          <p>
+            <label for="fechNac">Fecha de nacimiento</label>
+            <input type="date" name="fechNac" id="fechNac" />
+          </p>
+
+          <div class="button-container">
+            <input type="submit" value="Enviar" />
+            <input type="reset" value="Limpiar" />
+          </div>
+        </fieldset>
+      </form>

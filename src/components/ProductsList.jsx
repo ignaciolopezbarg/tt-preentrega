@@ -12,7 +12,7 @@ function ProductsList({
       <h1 className="text-2xl font-bold mb-4 text-center">Galería de Productos</h1>
       <motion.div>
         <motion.ul
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 p-5"
+          className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-8 p-5"
           initial={{ opacity: 0.2, scale: 0.3, y: 50 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.8, x: -100 }}
