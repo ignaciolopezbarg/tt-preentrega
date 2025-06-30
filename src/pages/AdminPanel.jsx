@@ -5,7 +5,7 @@ import Footer from "../components/Footer";
 const AdminPanel = (cart, quitarDelCarrito) => {
   return (
     <div className="">
-      {/* <Header cartItems={cart} quitarDelCarrito = {quitarDelCarrito} /> */}
+      
       <h1 className="text-4xl font-bold text-gray-800">
         Bienvenido al Panel de Administración
       </h1>

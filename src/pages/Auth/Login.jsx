@@ -1,7 +1,9 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import Footer from "../../components/Footer";
 import { AuthContext } from "../../context/AuthContext";
+
 
 const API_URL = "https://683f3f8b1cd60dca33dec719.mockapi.io/users";
 
@@ -44,16 +46,16 @@ function Login({ cart, quitarDelCarrito }) {
       );
 
       if (foundUser) {
-        alert("Bienvenido " + (foundUser.name || foundUser.email));
+        toast.success("Bienvenido " + (foundUser.name || foundUser.email));
         login(foundUser);
         navigate(foundUser.role === "admin" ? "/admin-panel" : "/user");
       } else {
-        alert("Usuario no encontrado. Redirigiendo al registro...");
+        toast.error("Usuario no encontrado. Redirigiendo al registro...");
         navigate("/register");
       }
     } catch (error) {
       console.error("Error en login:", error);
-      alert("Error al iniciar sesión. Intenta más tarde.");
+      toast.error("Error al iniciar sesión. Intenta más tarde.");
     }
   };
 

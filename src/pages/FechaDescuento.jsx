@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { format } from "date-fns";
 import es from "date-fns/locale/es";
 // import Header from "../components/Header";
@@ -31,13 +32,14 @@ const zonas = [
   },
 ];
 
-const FechaDescuento = ({ cart, quitarDelCarrito }) => {
+const FechaDescuento = ({ cart, quitarDelCarrito, setDescuento }) => {
   const [zona, setZona] = useState(null);
 
   function obtenerDiaHoy() {
     const hoy = new Date();
     return format(hoy, "eeee", { locale: es });
   }
+  const navigate = useNavigate();
 
   const verificarDescuento = async () => {
     const { value: zonaIngresada } = await Swal.fire({
@@ -67,6 +69,7 @@ const FechaDescuento = ({ cart, quitarDelCarrito }) => {
       const diaActual = obtenerDiaHoy();
       const descuentoDia = zonaData.descuentos.find((d) => d.dia === diaActual);
       if (descuentoDia) {
+         setDescuento(descuentoDia.descuento);
         Swal.fire({
           position: "top-end",
           icon: "success",
@@ -75,8 +78,10 @@ const FechaDescuento = ({ cart, quitarDelCarrito }) => {
           showConfirmButton: true,
           confirmButtonText: "OK",
           timer: 4000,
+          willClose: () => navigate("/user"),
         });
       } else {
+        setDescuento(0);
         Swal.fire({
           position: "top-end",
           icon: "info",
@@ -84,9 +89,11 @@ const FechaDescuento = ({ cart, quitarDelCarrito }) => {
           text: `No hay descuento disponible para la zona ${zonaSeleccionada} (${zonaData.descripcion}) el día ${diaActual}.`,
           showConfirmButton: false,
           timer: 2500,
+           willClose: () => navigate("/user"),
         });
       }
     } else {
+      setDescuento(0);
       Swal.fire({
         position: "top-end",
         icon: "info",
@@ -100,7 +107,7 @@ const FechaDescuento = ({ cart, quitarDelCarrito }) => {
 
   return (
     <div>
-       {/* <Header cartItems={cart} quitarDelCarrito = {quitarDelCarrito} /> */}
+      
       <div className="bg-gray-100 p-4 rounded-lg shadow-md mb-4">
         <p className="text-gray-700 bold mb-4">
           Bienvenido/a. En esta página podrás consultar los descuentos

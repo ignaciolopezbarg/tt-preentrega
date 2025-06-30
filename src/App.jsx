@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { ThemeContext } from "./context/ThemeContext";
 import "./App.css";
 import { AuthContext } from "./context/AuthContext";
@@ -11,22 +13,24 @@ import AdminPanel from "./pages/AdminPanel";
 import Contacts from "./pages/Contacts";
 import NotFound from "./pages/NotFound";
 import FechaDescuento from "./pages/FechaDescuento";
-import ProductDetail from "./components/ProductDetail";
+import ProductDetail from "./pages/ProductDetail";
 import AboutUs from "./pages/AboutUs";
 import PrivateRoute from "./components/PrivateRoute";
+import Checkout from "./pages/Checkout";
 
 function App() {
   const { theme } = useContext(ThemeContext);
   const themeClass =
     theme === "light" ? "bg-white text-black" : "bg-gray-800 text-white";
- 
-    const { user, logout, login } = useContext(AuthContext);
+
+  const { user, logout, login } = useContext(AuthContext);
   const navigate = useNavigate();
-    const location = useLocation();
+  const location = useLocation();
 
   const [cart, setCart] = useState([]);
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [descuento, setDescuento] = useState(0);
 
   useEffect(() => {
     setLoading(true);
@@ -65,26 +69,50 @@ function App() {
   };
 
   const incrementQuantity = (productId) => {
-    setCart((prevCart) =>
-      prevCart.map((item) =>
-        item.id === productId ? { ...item, quantity: item.quantity + 1 } : item
+    setProducts((prevProducts) =>
+      prevProducts.map((product) =>
+        product.id === productId
+          ? { ...product, quantity: (product.quantity || 0) + 1 }
+          : product
       )
     );
+    setCart((prevCart) => {
+      const exists = prevCart.some((item) => item.id === productId);
+      if (exists) {
+        return prevCart.map((item) =>
+          item.id === productId
+            ? { ...item, quantity: (item.quantity || 0) + 1 }
+            : item
+        );
+      } else {
+        const product = products.find((p) => p.id === productId);
+        if (product) {
+          return [...prevCart, { ...product, quantity: 1 }];
+        }
+        return prevCart;
+      }
+    });
   };
 
   const decrementQuantity = (productId) => {
+    setProducts((prevProducts) =>
+      prevProducts.map((product) =>
+        product.id === productId
+          ? { ...product, quantity: Math.max((product.quantity || 0) - 1, 0) }
+          : product
+      )
+    );
     setCart((prevCart) =>
       prevCart
         .map((item) =>
           item.id === productId
-            ? { ...item, quantity: item.quantity > 1 ? item.quantity - 1 : 1 }
+            ? { ...item, quantity: Math.max((item.quantity || 0) - 1, 0) }
             : item
         )
         .filter((item) => item.quantity > 0)
     );
   };
 
-  // Solo redirección al login si no hay usuario y la ruta no es pública
   useEffect(() => {
     const publicRoutes = [
       "/register",
@@ -104,8 +132,6 @@ function App() {
     }
   }, [user, navigate]);
 
-
-
   return (
     <div className={`min-h-screen ${themeClass}`}>
       <Header
@@ -114,6 +140,10 @@ function App() {
         user={user}
         login={login}
         logout={logout}
+        incrementarCantidad={incrementQuantity}
+        decrementarCantidad={decrementQuantity}
+        descuento={descuento}
+        setCart={setCart}
       />
 
       <Routes>
@@ -139,12 +169,7 @@ function App() {
         />
         <Route
           path="/register"
-          element={
-            <Register
-              cart={cart}
-              quitarDelCarrito={removeFromCart}
-            />
-          }
+          element={<Register cart={cart} quitarDelCarrito={removeFromCart} />}
         />
         <Route
           path="/user"
@@ -157,6 +182,7 @@ function App() {
               cart={cart}
               products={products}
               loading={loading}
+              descuento={descuento}
             />
           }
         />
@@ -171,7 +197,11 @@ function App() {
         <Route
           path="/descuentos"
           element={
-            <FechaDescuento cart={cart} quitarDelCarrito={removeFromCart} />
+            <FechaDescuento
+              setDescuento={setDescuento}
+              cart={cart}
+              quitarDelCarrito={removeFromCart}
+            />
           }
         />
         <Route
@@ -182,6 +212,9 @@ function App() {
           path="/contacto"
           element={<Contacts cart={cart} quitarDelCarrito={removeFromCart} />}
         />
+
+        <Route path="/checkout" element={<Checkout />} />
+
         <Route
           path="/products/:id"
           element={<ProductDetail products={products} />}
@@ -196,6 +229,7 @@ function App() {
         />
         <Route path="*" element={<NotFound />} />
       </Routes>
+      <ToastContainer />
     </div>
   );
 }

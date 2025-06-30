@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
+import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import Footer from "../../components/Footer";
@@ -27,7 +28,7 @@ const Register = ({ cart, quitarDelCarrito }) => {
     e.preventDefault();
 
     if (!name || !email || !password || !gender || !role) {
-      alert("Todos los campos son obligatorios");
+      toast.warning("Todos los campos son obligatorios");
       return;
     }
 
@@ -46,7 +47,11 @@ const Register = ({ cart, quitarDelCarrito }) => {
       if (!response.ok) throw new Error("Error al crear usuario");
 
       const createdUser = await response.json();
-      alert("Usuario registrado con éxito");
+      toast.success("🎉 Usuario registrado con éxito ⚒️", {
+        position: "bottom-right",
+        autoClose: 3000,
+        theme: "colored",
+      });
 
       login(createdUser);
 
@@ -57,14 +62,14 @@ const Register = ({ cart, quitarDelCarrito }) => {
       }
     } catch (error) {
       console.error("Error al registrar:", error);
-      alert("Error al crear el usuario. Intenta más tarde.");
+      toast.error("Error al crear el usuario. Intenta más tarde.");
     }
   };
 
   return (
     <div className="min-h-screen flex flex-col justify-between bg-slate-100">
       <form
-      autoComplete="off"
+        autoComplete="off"
         onSubmit={handleRegister}
         className="max-w-md mx-auto mt-10 p-6 bg-white rounded-xl shadow-md"
       >
@@ -72,8 +77,8 @@ const Register = ({ cart, quitarDelCarrito }) => {
 
         <input
           type="text"
-            name="register-name"
-    autoComplete="off"
+          name="register-name"
+          autoComplete="off"
           placeholder="Nombre"
           value={name}
           minLength={3}
@@ -85,7 +90,7 @@ const Register = ({ cart, quitarDelCarrito }) => {
         <input
           type="email"
           name="register-email"
-    autoComplete="username"
+          autoComplete="username"
           placeholder="Correo electrónico"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
@@ -94,8 +99,8 @@ const Register = ({ cart, quitarDelCarrito }) => {
         />
         <input
           type="password"
-           name="register-password"
-    autoComplete="new-password"
+          name="register-password"
+          autoComplete="new-password"
           placeholder="Contraseña"
           value={password}
           onChange={(e) => setPassword(e.target.value)}

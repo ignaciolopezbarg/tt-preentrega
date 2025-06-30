@@ -1,5 +1,6 @@
-import React from "react";
+// import React from "react";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 function ProductsList({
   products,
@@ -21,53 +22,60 @@ function ProductsList({
           {products.map((product) => (
             <motion.li
               key={product.id}
-              className="border p-4 rounded-lg shadow-md"
+              className="border p-4 rounded-lg shadow-md bg-white flex flex-col justify-between min-h-[430px]"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3, delay: product.id * 0.3 }}
             >
-              <img
-                src={product.img}
-                alt={product.product}
-                className="mx-auto w-80 h-60 object-cover rounded-md"
-              />
-              <h2 className="text-xl font-bold mt-2">{product.product}</h2>
-              <p className="text-lg">{product.description}</p>
-              <span className="text-lg text-green-600 font-semibold">
-                Precio: $ {product.price}
-              </span>
-              <p className="text-sm">Stock: {product.stock} kg</p>
-              <p className="text-sm font-medium">Categoría: {product.category}</p>
-              <section className="flex items-center gap-4 mt-4">
-                {/* Botón para restar cantidad */}
-                <button
-                  className="bg-slate-100 w-12 h-8 border-4 text-xl text-gray-800 rounded-md hover:bg-slate-200"
-                  onClick={() => decrementarCantidad(product.id)}
-                >
-                  -
-                </button>
-
-                {/* Mostrar cantidad actual */}
-                <span className="text-lg font-bold">
-                  {product.quantity || 0}
+              {/* Contenido superior */}
+              <div>
+                <img
+                  src={product.img}
+                  alt={product.product}
+                  className="mx-auto w-80 h-60 object-cover rounded-md"
+                />
+                <h2 className="text-xl text-gray-700 font-bold mt-2">{product.product}</h2>
+                <p className="text-lg text-gray-500">{product.description}</p>
+                <span className="text-lg text-green-600 font-semibold">
+                  Precio: $ {product.price}
                 </span>
-
-                {/* Botón para sumar cantidad */}
+                <p className="text-sm text-gray-500">Stock: {product.stock} kg</p>
+                <p className="text-sm font-medium text-gray-500">Categoría: {product.category}</p>
+              </div>
+              {/* Bloque inferior: cantidad y botones de acción */}
+              <div className="flex flex-col gap-2 mt-3 w-full">
+                <div className="flex flex-row items-center justify-center gap-2 w-full">
+                  <button
+                    className="w-8 h-8 bg-slate-100 border-2 border-gray-300 text-lg text-gray-800 rounded hover:bg-slate-200 flex items-center justify-center"
+                    onClick={() => decrementarCantidad(product.id)}
+                  >
+                    -
+                  </button>
+                  <span className="w-8 h-8 flex items-center justify-center text-gray-600 font-bold bg-gray-100 rounded">
+                    {product.quantity || 0}
+                  </span>
+                  <button
+                    className="w-8 h-8 bg-slate-100 border-2 border-gray-300 text-lg text-gray-800 rounded hover:bg-slate-200 flex items-center justify-center"
+                    onClick={() => incrementarCantidad(product.id)}
+                  >
+                    +
+                  </button>
+                </div>
                 <button
-                  className="bg-slate-100 w-12 h-8 border-4 text-xl text-gray-800 rounded-md hover:bg-slate-200"
-                  onClick={() => incrementarCantidad(product.id)}
-                >
-                  +
-                </button>
-              </section>
-              <section className="flex flex-row gap-20">
-                <button
-                  className="mt-3 px-4 py-2 bg-red-400 text-white rounded-lg hover:bg-blue-500 transition duration-500"
+                  className="w-full px-2 py-1 bg-blue-600 text-white rounded shadow hover:bg-blue-800 transition-colors text-sm font-medium"
                   onClick={() => agregarCarrito(product)}
                 >
                   Agregar al Carrito
                 </button>
-              </section>
+                <Link to={`/products/${product.id}`} className="w-full">
+                  <button
+                    className="w-full px-1 py-0.5 bg-blue-500 text-white rounded shadow hover:bg-blue-700 transition-colors text-xs font-medium"
+                    type="button"
+                  >
+                    Ver Detalles
+                  </button>
+                </Link>
+              </div>
             </motion.li>
           ))}
         </motion.ul>
