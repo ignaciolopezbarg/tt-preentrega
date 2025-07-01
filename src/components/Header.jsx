@@ -1,24 +1,19 @@
-import React, { useState, useContext } from "react";
+ import React, { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Modo from "./Modo";
 import { ThemeContext } from "../context/ThemeContext.jsx";
+import { CartContext } from "../context/CartContext.jsx";
 import Cart from "./Cart";
 import "../styles/cart.css";
 
-function Header({
-  cartItems,
-  quitarDelCarrito,
-  user,
-  login,
-  logout,
-  incrementarCantidad,
-  decrementarCantidad,
-  descuento,
-  setCart,
-}) {
+function Header({ user, login, logout }) {
   const [isCartOpen, setIsCartOpen] = useState(false);
-  const { theme, toggleTheme } = useContext(ThemeContext);
+  const { theme } = useContext(ThemeContext);
   const navigate = useNavigate();
+
+  const {
+    cart,
+  } = useContext(CartContext);
 
   return (
     <header className="bg-gray-300 p-4 flex justify-between items-center">
@@ -58,22 +53,16 @@ function Header({
               className="bg-red-400 w-14 h-14 rounded-full shadow-xl relative"
             >
               <i className="material-icons">shopping_cart</i>
-              {cartItems?.length > 0 && (
+              {cart?.length > 0 && (
                 <span className="absolute top-0 right-0 bg-green-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
-                  {cartItems.reduce((total, item) => total + item.quantity, 0)}
+                  {cart.reduce((total, item) => total + item.quantity, 0)}
                 </span>
               )}
             </button>
             {isCartOpen && (
               <Cart
-                cartItems={cartItems}
                 isOpen={isCartOpen}
                 onClose={() => setIsCartOpen(false)}
-                quitarDelCarrito={quitarDelCarrito}
-                incrementarCantidad={incrementarCantidad}
-                decrementarCantidad={decrementarCantidad}
-                descuento={descuento}
-                setCart={setCart}
               />
             )}
           </li>

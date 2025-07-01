@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { CartContext } from "../context/CartContext";
 import { format } from "date-fns";
 import es from "date-fns/locale/es";
-// import Header from "../components/Header";
 import Footer from "../components/Footer";
 
 const zonas = [
@@ -32,14 +32,15 @@ const zonas = [
   },
 ];
 
-const FechaDescuento = ({  setDescuento }) => {
+const FechaDescuento = () => {
   const [zona, setZona] = useState(null);
+  const { setDescuento } = useContext(CartContext);
+  const navigate = useNavigate();
 
   function obtenerDiaHoy() {
     const hoy = new Date();
     return format(hoy, "eeee", { locale: es });
   }
-  const navigate = useNavigate();
 
   const verificarDescuento = async () => {
     const { value: zonaIngresada } = await Swal.fire({
@@ -69,7 +70,7 @@ const FechaDescuento = ({  setDescuento }) => {
       const diaActual = obtenerDiaHoy();
       const descuentoDia = zonaData.descuentos.find((d) => d.dia === diaActual);
       if (descuentoDia) {
-         setDescuento(descuentoDia.descuento);
+        setDescuento(descuentoDia.descuento);
         Swal.fire({
           position: "top-end",
           icon: "success",
@@ -89,7 +90,7 @@ const FechaDescuento = ({  setDescuento }) => {
           text: `No hay descuento disponible para la zona ${zonaSeleccionada} (${zonaData.descripcion}) el día ${diaActual}.`,
           showConfirmButton: false,
           timer: 2500,
-           willClose: () => navigate("/user"),
+          willClose: () => navigate("/user"),
         });
       }
     } else {
@@ -107,7 +108,6 @@ const FechaDescuento = ({  setDescuento }) => {
 
   return (
     <div>
-      
       <div className="bg-gray-100 p-4 rounded-lg shadow-md mb-4">
         <p className="text-gray-700 bold mb-4">
           Bienvenido/a. En esta página podrás consultar los descuentos
@@ -137,8 +137,8 @@ const FechaDescuento = ({  setDescuento }) => {
                   {zona.descripcion}
                 </td>
                 <td className="border border-gray-300 px-4 py-2 text-center">
-  {zona.descuentos.map((d) => d.dia).join(", ")}
-</td>
+                  {zona.descuentos.map((d) => d.dia).join(", ")}
+                </td>
               </tr>
             ))}
           </tbody>
@@ -157,5 +157,4 @@ const FechaDescuento = ({  setDescuento }) => {
     </div>
   );
 };
-
 export default FechaDescuento;

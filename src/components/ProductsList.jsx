@@ -1,12 +1,11 @@
-// import React from "react";
+import React, { useContext } from "react";
+import { CartContext } from "../context/CartContext.jsx";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 
-function ProductsList({
-  products,
-  agregarCarrito,
-  
-}) {
+function ProductsList() {
+  const { products, handleAddToCart } = useContext(CartContext);
+
   return (
     <>
       <h1 className="text-2xl font-bold mb-4 text-center">Galería de Productos</h1>
@@ -41,12 +40,11 @@ function ProductsList({
                 <p className="text-sm text-gray-500">Stock: {product.stock} kg</p>
                 <p className="text-sm font-medium text-gray-500">Categoría: {product.category}</p>
               </div>
-              {/* Bloque inferior: cantidad y botones de acción */}
+              {/* Botones */}
               <div className="flex flex-col gap-2 mt-3 w-full">
-          
                 <button
                   className="w-full px-2 py-1 bg-blue-600 text-white rounded shadow hover:bg-blue-800 transition-colors text-sm font-medium"
-                  onClick={() => agregarCarrito(product)}
+                  onClick={() => handleAddToCart(product)}
                 >
                   Agregar al Carrito
                 </button>

@@ -1,23 +1,20 @@
-
-
-import React from "react";
+import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { CartContext } from "../context/CartContext.jsx";
 import "../styles/cart.css";
 
-function Cart({
-  cartItems,
-  isOpen,
-  onClose,
-  quitarDelCarrito,
-  incrementarCantidad,
-  decrementarCantidad,
-  descuento ,
-  setCart
-}) {
+function Cart({ isOpen, onClose }) {
   const navigate = useNavigate();
+  const {
+    cart,
+    setCart,
+    descuento,
+    incrementQuantity,
+    decrementQuantity,
+    removeFromCart,
+  } = useContext(CartContext);
 
-  // Calcula el total y el total con descuento
-  const total = cartItems.reduce(
+  const total = cart.reduce(
     (sum, item) => sum + item.price * (item.quantity || 0),
     0
   );
@@ -25,8 +22,8 @@ function Cart({
     ? total * (1 - descuento / 100)
     : total;
 
-      const finalizarCompra = () => {
-    setCart([]); // Vacía el carrito
+  const finalizarCompra = () => {
+    setCart([]);
     navigate("/checkout");
   };
 
@@ -37,30 +34,30 @@ function Cart({
         <button onClick={onClose} className="close-button">X</button>
       </div>
       <div className="cart-content">
-        {cartItems.length === 0 ? (
+        {cart.length === 0 ? (
           <p style={{ color: 'red' }}> El carrito está vacío </p>
         ) : (
           <>
             <ul className="cart-item flex flex-col gap-4">
-              {cartItems.map((item) => (
+              {cart.map((item) => (
                 <li key={item.id} className="flex flex-col gap-1">
                   <h2>{item.product}</h2>
                   <p>Precio: ${item.price}</p>
                   <div className="flex items-center gap-2">
                     <button
                       className="w-6 h-6 bg-slate-100 border text-lg rounded hover:bg-slate-200"
-                      onClick={() => decrementarCantidad(item.id)}
+                      onClick={() => decrementQuantity(item.id)}
                     >-</button>
                     <span className="w-8 text-center">{item.quantity}</span>
                     <button
                       className="w-6 h-6 bg-slate-100 border text-lg rounded hover:bg-slate-200"
-                      onClick={() => incrementarCantidad(item.id)}
+                      onClick={() => incrementQuantity(item.id)}
                     >+</button>
                   </div>
                   <button>
                     <i
                       className="material-icons"
-                      onClick={() => quitarDelCarrito(item.id)}
+                      onClick={() => removeFromCart(item.id)}
                     >delete</i>
                   </button>
                 </li>
@@ -83,14 +80,14 @@ function Cart({
             >
               Utilizar descuentos
             </button>
- {cartItems.length > 0 && (
-    <button
-      className="w-full mt-2 bg-blue-700 text-white py-2 rounded-lg shadow hover:bg-blue-900 transition-all font-semibold"
-      onClick={finalizarCompra}
-    >
-      Finalizar compra
-    </button>
- ) }  
+            {cart.length > 0 && (
+              <button
+                className="w-full mt-2 bg-blue-700 text-white py-2 rounded-lg shadow hover:bg-blue-900 transition-all font-semibold"
+                onClick={finalizarCompra}
+              >
+                Finalizar compra
+              </button>
+            )}
           </>
         )}
       </div>

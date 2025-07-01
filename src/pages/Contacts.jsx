@@ -2,7 +2,7 @@ import React from "react";
 // import Header from '../components/Header'
 import Footer from "../components/Footer";
 
-function Contacts({ cart, quitarDelCarrito }) {
+function Contacts({  }) {
   return (
     <>
       <h1>Pagina de Contactos </h1>

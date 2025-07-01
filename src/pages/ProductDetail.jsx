@@ -1,9 +1,21 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useParams } from "react-router-dom";
 import Footer from "../components/Footer";
+import { CartContext } from "../context/CartContext.jsx";
 
-function ProductDetail({ products }) {
+function ProductDetail() {
+  const { products } = useContext(CartContext);
   const { id, category, product } = useParams();
+
+  if (!products || !products.length) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <p className="text-lg font-semibold text-gray-700">
+          Cargando productos...
+        </p>
+      </div>
+    );
+  }
 
   const productById = id ? products.find((p) => p.id == id) : null;
 
@@ -16,16 +28,6 @@ function ProductDetail({ products }) {
   const productByName = product
     ? products.find((p) => p.product.toLowerCase() === product.toLowerCase())
     : null;
-
-  if (!products.length) {
-    return (
-      <div className="flex items-center justify-center min-h-screen">
-        <p className="text-lg font-semibold text-gray-700">
-          Cargando productos...
-        </p>
-      </div>
-    );
-  }
 
   if (productByName) {
     return (
@@ -84,7 +86,6 @@ function ProductDetail({ products }) {
             </p>
             <span className="text-blue-900 text-bold text-lg"> Mas Detalles del Producto: </span>
             <p className="text-blue-600">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eveniet ad nam, suscipit quaerat quas veritatis magnam earum et repellendus! Non voluptatibus aperiam molestias adipisci eos quidem, incidunt aliquam delectus illum!</p>
-
           </div>
         </div>
         <Footer />

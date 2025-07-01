@@ -2,7 +2,7 @@ import React from "react";
 // import Header from '../components/Header'
 import Footer from "../components/Footer";
 
-function AboutUs({ cart, quitarDelCarrito }) {
+function AboutUs({  }) {
   return (
     <>
       <h1>Acerca de Nosotros</h1>
