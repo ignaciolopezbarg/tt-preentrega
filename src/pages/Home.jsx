@@ -2,7 +2,7 @@ import React from "react";
 import ProductsList from "../components/ProductsList";
 import Footer from "../components/Footer";
 
-function Home({ cart, products, loading, agregarCarrito, quitarDelCarrito, incrementarCantidad, decrementarCantidad }) {
+function Home({ cart, products, loading, agregarCarrito }) {
   return (
     <main className="flex flex-col items-center justify-center min-h-screen ">
       <h1 className="text-2xl font-bold mb-4 text-center">
@@ -21,8 +21,8 @@ function Home({ cart, products, loading, agregarCarrito, quitarDelCarrito, incre
         <ProductsList
           products={products}
           agregarCarrito={agregarCarrito}
-          incrementarCantidad={incrementarCantidad}
-          decrementarCantidad={decrementarCantidad}
+          // incrementarCantidad={incrementarCantidad}
+          // decrementarCantidad={decrementarCantidad}
         />
       )}
       <Footer />

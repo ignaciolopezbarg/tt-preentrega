@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import Footer from "../../components/Footer";
 
-const Register = ({ cart, quitarDelCarrito }) => {
+const Register = () => {
   const navigate = useNavigate();
   const { login, justLoggedOut, setJustLoggedOut } = useContext(AuthContext);
 
@@ -73,7 +73,7 @@ const Register = ({ cart, quitarDelCarrito }) => {
         onSubmit={handleRegister}
         className="max-w-md mx-auto mt-10 p-6 bg-white rounded-xl shadow-md"
       >
-        <h2 className="text-2xl font-bold text-center mb-6">Registro</h2>
+        <h2 className="text-2xl font-bold text-center mb-6 text-gray-600">Registro</h2>
 
         <input
           type="text"
@@ -110,7 +110,7 @@ const Register = ({ cart, quitarDelCarrito }) => {
         <select
           value={gender}
           onChange={(e) => setGender(e.target.value)}
-          className="w-full mb-6 px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-full mb-6 px-3 py-2 border text-gray-500 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
         >
           <option value="">Selecciona género</option>
           <option value="male">Masculino</option>
@@ -121,8 +121,9 @@ const Register = ({ cart, quitarDelCarrito }) => {
         <select
           value={role}
           onChange={(e) => setRole(e.target.value)}
-          className="w-full mb-6 px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-full mb-6 px-3 py-2 text-gray-500 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
         >
+          <option value="">Selecciona rol</option>
           <option value="user">Usuario</option>
           <option value="admin">Administrador</option>
         </select>

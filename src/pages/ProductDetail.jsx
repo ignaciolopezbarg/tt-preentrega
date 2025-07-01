@@ -2,7 +2,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import Footer from "../components/Footer";
 
-function ProductDetail({ products, cart, quitarDelCarrito }) {
+function ProductDetail({ products }) {
   const { id, category, product } = useParams();
 
   const productById = id ? products.find((p) => p.id == id) : null;
@@ -62,7 +62,7 @@ function ProductDetail({ products, cart, quitarDelCarrito }) {
     return (
       <div className="min-h-screen flex flex-col items-center bg-gray-100">
         <div className="bg-white shadow-md rounded-lg p-6 mt-6 w-11/12 md:w-2/3 lg:w-1/2">
-          <h1 className="text-2xl font-bold text-center mb-4">
+          <h1 className="text-2xl font-bold text-center mb-4 text-red-500">
             Detalles del Producto: {productById.product}
           </h1>
           <div className="flex flex-col items-center">
@@ -82,6 +82,9 @@ function ProductDetail({ products, cart, quitarDelCarrito }) {
             <p className="text-gray-600 mt-2">
               Categoría: {productById.category}
             </p>
+            <span className="text-blue-900 text-bold text-lg"> Mas Detalles del Producto: </span>
+            <p className="text-blue-600">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eveniet ad nam, suscipit quaerat quas veritatis magnam earum et repellendus! Non voluptatibus aperiam molestias adipisci eos quidem, incidunt aliquam delectus illum!</p>
+
           </div>
         </div>
         <Footer />

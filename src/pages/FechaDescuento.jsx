@@ -32,7 +32,7 @@ const zonas = [
   },
 ];
 
-const FechaDescuento = ({ cart, quitarDelCarrito, setDescuento }) => {
+const FechaDescuento = ({  setDescuento }) => {
   const [zona, setZona] = useState(null);
 
   function obtenerDiaHoy() {

@@ -7,7 +7,7 @@ import { AuthContext } from "../../context/AuthContext";
 
 const API_URL = "https://683f3f8b1cd60dca33dec719.mockapi.io/users";
 
-function Login({ cart, quitarDelCarrito }) {
+function Login() {
   const navigate = useNavigate();
   const { user, login, logout } = useContext(AuthContext);
 
@@ -67,7 +67,7 @@ function Login({ cart, quitarDelCarrito }) {
           onSubmit={handleLogin}
           className="w-full max-w-md p-6 bg-white rounded-lg shadow-md"
         >
-          <h2 className="text-2xl font-bold mb-6 text-center">Iniciar sesión</h2>
+          <h2 className="text-2xl font-bold mb-6 text-center text-gray-700">Iniciar sesión</h2>
 
           <input
             type="email"
@@ -95,7 +95,7 @@ function Login({ cart, quitarDelCarrito }) {
             Ingresar
           </button>
 
-          <p className="mt-4 text-center text-sm">
+          <p className="mt-4 text-center text-sm text-gray-500">
             ¿No tenés una cuenta?{" "}
             <span
               className="text-blue-600 cursor-pointer hover:underline"

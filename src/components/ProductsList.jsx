@@ -5,15 +5,14 @@ import { Link } from "react-router-dom";
 function ProductsList({
   products,
   agregarCarrito,
-  incrementarCantidad,
-  decrementarCantidad,
+  
 }) {
   return (
     <>
       <h1 className="text-2xl font-bold mb-4 text-center">Galería de Productos</h1>
       <motion.div>
         <motion.ul
-          className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-8 p-5"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 p-5"
           initial={{ opacity: 0.2, scale: 0.3, y: 50 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.8, x: -100 }}
@@ -44,23 +43,7 @@ function ProductsList({
               </div>
               {/* Bloque inferior: cantidad y botones de acción */}
               <div className="flex flex-col gap-2 mt-3 w-full">
-                <div className="flex flex-row items-center justify-center gap-2 w-full">
-                  <button
-                    className="w-8 h-8 bg-slate-100 border-2 border-gray-300 text-lg text-gray-800 rounded hover:bg-slate-200 flex items-center justify-center"
-                    onClick={() => decrementarCantidad(product.id)}
-                  >
-                    -
-                  </button>
-                  <span className="w-8 h-8 flex items-center justify-center text-gray-600 font-bold bg-gray-100 rounded">
-                    {product.quantity || 0}
-                  </span>
-                  <button
-                    className="w-8 h-8 bg-slate-100 border-2 border-gray-300 text-lg text-gray-800 rounded hover:bg-slate-200 flex items-center justify-center"
-                    onClick={() => incrementarCantidad(product.id)}
-                  >
-                    +
-                  </button>
-                </div>
+          
                 <button
                   className="w-full px-2 py-1 bg-blue-600 text-white rounded shadow hover:bg-blue-800 transition-colors text-sm font-medium"
                   onClick={() => agregarCarrito(product)}
