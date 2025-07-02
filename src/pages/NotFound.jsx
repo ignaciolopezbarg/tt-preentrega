@@ -6,7 +6,7 @@ function NotFound() {
     <>
     <h2>Cargando ...</h2>
       <img
-        src="/images/404.png"
+        src= {`${import.meta.env.BASE_URL}images/404.png`}
         alt="Página no encontrada"
         style={{ width: "400px", margin: "20px auto" }}
       />

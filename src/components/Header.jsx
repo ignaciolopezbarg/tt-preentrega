@@ -18,7 +18,7 @@ function Header({ user, login, logout }) {
   return (
     <header className="bg-gray-300 p-4 flex justify-between items-center">
       <img
-        src="/logo.jpeg"
+        src= {`${import.meta.env.BASE_URL}logo.jpeg`}
         alt="Logo"
         className="w-48 h-24 rounded-xl shadow-lg"
       />

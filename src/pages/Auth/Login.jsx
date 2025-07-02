@@ -45,7 +45,7 @@ function Login() {
       );
 
       if (foundUser) {
-        toast.success("Bienvenido " + (foundUser.name || foundUser.email));
+        toast.success("¡Bienvenido, " + (foundUser.name || foundUser.email) + "!");
         login(foundUser);
         navigate(foundUser.role === "admin" ? "/admin-panel" : "/user");
       } else {
@@ -61,25 +61,34 @@ function Login() {
   return (
     <div className="min-h-screen flex flex-col justify-between bg-slate-100">
       <div className="w-full max-w-md mx-auto">
+        {/* Logo como banner repetido */}
+        <div
+          className="w-full h-28 bg-repeat-x bg-center pt-6 mb-4 rounded-xl shadow-lg"
+          style={{
+            backgroundImage: `url(${import.meta.env.BASE_URL}logo.jpeg)`,
+            backgroundSize: "auto 80%",
+          }}
+        />
+        <h1 className="text-3xl font-extrabold text-center text-blue-900 mt-2 mb-1">
+          ¡Bienvenido a Talento-Tech!
+        </h1>
+        <p className="text-center text-gray-700 mb-2">
+          Ingresá para disfrutar de la mejor frutería y verdulería online.
+        </p>
         <section className="bg-blue-400 text-lg rounded-t-lg px-6 py-4">
-          <h1 className="text-center font-bold text-2xl">
-            Página de autentificación
-          </h1>
-          <h2 className="text-center">
-            Si no está registrado en el sitio no puedes acceder al mismo
+          <h2 className="text-center font-bold text-2xl">
+            Iniciar sesión
           </h2>
+          <h3 className="text-center">
+            Si no estás registrado, no podrás acceder al sitio.
+          </h3>
         </section>
-
         <main className="flex-grow flex items-center justify-center">
           <form
             autoComplete="off"
             onSubmit={handleLogin}
             className="w-full p-6 bg-white rounded-b-lg shadow-md"
           >
-            <h2 className="text-2xl font-bold mb-6 text-center text-gray-700">
-              Iniciar sesión
-            </h2>
-
             <input
               type="email"
               autoComplete="useremail"
@@ -125,4 +134,5 @@ function Login() {
     </div>
   );
 }
+
 export default Login;

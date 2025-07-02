@@ -14,7 +14,7 @@ function Home() {
       {loading ? (
         <div className="flex flex-col items-center w-fit">
           <img
-            src="/loading.gif"
+            src={`${import.meta.env.BASE_URL}loading.gif`}
             alt="Loading..."
             className="w-fit h-64 object-cover rounded-md shadow-md  mb-4"
           />
