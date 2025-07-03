@@ -34,12 +34,7 @@ function App() {
 
   return (
     <div className={`min-h-screen ${themeClass}`}>
-       {/* {showWarning && (
-        <div className="bg-yellow-300 text-black p-4 text-center font-bold">
-          Advertencia: Debes acceder a la app usando la ruta <span className="underline">/tt-preentrega/</span>.<br />
-          Ejemplo: <a href="https://ignaciolopezbarg.github.io/tt-preentrega/" className="underline text-blue-700">https://ignaciolopezbarg.github.io/tt-preentrega/</a>
-        </div>
-      )} */}
+     
       {!hideHeader && <Header user={user} login={login} logout={logout} />}
       <Routes>
         <Route path="/" element={<Login key={location.key} />} />
