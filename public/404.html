@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirecting...</title>
+    <script>
+        // GitHub Pages SPA redirect
+        // This script takes the current page and redirects to the root with the path as a hash
+        const path = window.location.pathname.slice(1);
+        if (path) {
+            window.location.replace(
+                window.location.origin + '/tt-preentrega/#/' + path + window.location.search + window.location.hash
+            );
+        }
+    </script>
+</head>
+<body>
+    <p>Redirecting...</p>
+</body>
+</html>
