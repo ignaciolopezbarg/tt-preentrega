@@ -5,27 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Redirecting...</title>
     <script>
-        // GitHub Pages SPA redirect
-        // This script takes the current page and redirects to the root with the path as a hash
-        const path = window.location.pathname;
-        const segments = path.split('/').filter(Boolean);
-        
-        // Remove the repository name from the path (tt-preentrega)
-        if (segments[0] === 'tt-preentrega') {
-            segments.shift();
-        }
-        
-        const newPath = segments.join('/');
-        
-        if (newPath) {
-            window.location.replace(
-                window.location.origin + '/tt-preentrega/#/' + newPath + window.location.search + window.location.hash
-            );
-        } else {
-            window.location.replace(
-                window.location.origin + '/tt-preentrega/'
-            );
-        }
+        // Redirect all 404s to the root with hash routing
+        window.location.replace(window.location.origin + '/tt-preentrega/#' + window.location.pathname);
     </script>
 </head>
 <body>
