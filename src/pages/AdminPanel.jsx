@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
+import { toast } from "react-toastify";
 import FormularioProducto from "../components/FormularioProducto";
 import Footer from "../components/Footer";
 import {ThemeContext} from "../context/ThemeContext";
@@ -69,13 +70,32 @@ const AdminPanel = () => {
       // Cerrar el formulario
       setOpen(false);
 
-      alert("Producto agregado correctamente");
+      toast.success("Producto agregado correctamente");
     } catch (error) {
       console.error("Error al agregar producto:", error);
-      alert("Error al agregar el producto. Por favor, intenta nuevamente.");
+      toast.error("Error al agregar el producto. Por favor, intenta nuevamente.");
     }
   };
 
+  // Función para eliminar un producto
+const eliminarProducto = async (id) => {
+  const confirmacion = window.confirm("¿Estás seguro de que deseas eliminar este producto?");
+  if (confirmacion) {
+    try {
+      const respuesta = await fetch(`https://6814d2a7225ff1af162a3ac3.mockapi.io/ecommerce/${id}`, {
+        method: "DELETE",
+      });
+      if (!respuesta.ok) {
+        throw new Error("Error al eliminar producto");
+      }
+      setProductos((prevProductos) => prevProductos.filter((producto) => producto.id !== id));
+      toast.success("Producto eliminado correctamente");
+    } catch (error) {
+      console.error("Error al eliminar producto:", error);
+      toast.error("Error al eliminar el producto. Por favor, intenta nuevamente.");
+    }
+  }
+};
   return (
     <div className={`min-h-screen p-6 ${theme === 'dark' ? 'bg-gray-900' : 'bg-gray-50'}`}>
       <div className="max-w-6xl mx-auto">
@@ -128,7 +148,10 @@ const AdminPanel = () => {
                         <button className="flex-1 bg-blue-500 text-white px-3 py-2 rounded-md hover:bg-blue-600 transition-colors duration-200 text-sm">
                           Editar
                         </button>
-                        <button className="flex-1 bg-red-500 text-white px-3 py-2 rounded-md hover:bg-red-600 transition-colors duration-200 text-sm">
+                        <button 
+                          onClick={() => eliminarProducto(producto.id)}
+                          className="flex-1 bg-red-500 text-white px-3 py-2 rounded-md hover:bg-red-600 transition-colors duration-200 text-sm"
+                        >
                           Eliminar
                         </button>
                       </div>
