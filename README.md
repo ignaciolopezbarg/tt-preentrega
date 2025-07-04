@@ -42,10 +42,11 @@ Navega por el catálogo de productos.
 Agrega productos al carrito y finaliza la compra.
 Si eres admin, podras agregar, editar y eliminar productos.
 Tanto los productos, como el tipo de usuarios, estan alojados en dos bases de mockapi, siendo las mismas
- https://6814d2a7225ff1af162a3ac3.mockapi.io/ecommerce para los productos
-https://683f3f8b1cd60dca33dec719.mockapi.io/users    para los usuarios
+https://6814d2a7225ff1af162a3ac3.mockapi.io/ecommerce para los productos
+https://683f3f8b1cd60dca33dec719.mockapi.io/users para los usuarios
 
 El acceso es siempre es con el Login, y si no estas registrado, te deriva al Registro, quedando todo almacenado en la base de mockapi.
+
 <p align = "center" >
 <img src="public/images/Login.png" width= "200" alt="pantalla del login">
  <img src="public/images/Usuario.png" width= "200"  alt="pantalla del usuario">
@@ -108,6 +109,7 @@ tt-preentrega/
 
 
 ```
+
 👤 Autor
 Ignacio Lopez Barg
 📝 Licencia
