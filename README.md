@@ -46,6 +46,8 @@ Tanto los productos, como el tipo de usuarios, estan alojados en dos bases de mo
 https://683f3f8b1cd60dca33dec719.mockapi.io/users    para los usuarios
 
 El acceso es siempre es con el Login, y si no estas registrado, te deriva al Registro, quedando todo almacenado en la base de mockapi.
+
+![Imagen del Login-Acceso] (images/login.png)
 📁 Estructura del Proyecto
 
 ```
