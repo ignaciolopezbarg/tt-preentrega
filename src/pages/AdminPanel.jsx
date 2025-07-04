@@ -25,26 +25,16 @@ const AdminPanel = () => {
         .then((response) => response.json())
         .then((data) => {
           // Limpiar las URLs de las imágenes al cargar los datos
-          const productosLimpios = data
-            .filter(
-              (producto) =>
-                producto.id &&
-                producto.id !== "" &&
-                typeof producto.id === "string" &&
-                !isNaN(Number(producto.id)) // MockAPI usa ids numéricos como string, filtra ids inválidos
-            )
-            .map((producto) => ({
-              ...producto,
-              img: limpiarUrlImagen(producto.img),
-              product: producto.product || producto.name || "", // Normaliza el nombre
-            }));
+          const productosLimpios = data.map((producto) => ({
+            ...producto,
+            img: limpiarUrlImagen(producto.img),
+          }));
 
           setProductos(productosLimpios);
           setLoading(false);
         })
         .catch((error) => {
           console.error("Error al obtener productos:", error);
-          setProductos([]); // Asegura que no queden productos corruptos en el estado
           setLoading(false);
         });
     }, 2000);
