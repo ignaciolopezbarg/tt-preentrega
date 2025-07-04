@@ -48,7 +48,7 @@ https://683f3f8b1cd60dca33dec719.mockapi.io/users    para los usuarios
 El acceso es siempre es con el Login, y si no estas registrado, te deriva al Registro, quedando todo almacenado en la base de mockapi.
 <p align = "center" >
 <img src="public/images/Login.png" width= 200 alt="pantalla del login">
- <img src="public/images/Usuario.png" width= 200 heigth=200 alt="pantalla del usuario">
+ <img src="public/images/Usuario.png" width= 200 heigth= 200 alt="pantalla del usuario">
  <img src="public/images/PanelAdmin.png" width= 200 alt="pantalla del admin">
  </p>
 📁 Estructura del Proyecto
