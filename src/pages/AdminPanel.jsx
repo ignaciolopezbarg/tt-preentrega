@@ -9,6 +9,7 @@ const AdminPanel = () => {
   const [form, setForm] = useState({ id: null, name: "", price: "" });
   const [loading, setLoading] = useState(true);
   const [open, setOpen] = useState(false);
+  const [productoEditando, setProductoEditando] = useState(null);
   const { theme } = useContext(ThemeContext);
 
   // Función para limpiar URLs de imágenes que tienen comillas extra
@@ -96,6 +97,35 @@ const eliminarProducto = async (id) => {
     }
   }
 };
+
+  // Función para editar un producto
+  const editarProducto = async (productoEditado) => {
+    try {
+      const respuesta = await fetch(`https://6814d2a7225ff1af162a3ac3.mockapi.io/ecommerce/${productoEditado.id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(productoEditado),
+      });
+      if (!respuesta.ok) {
+        throw new Error("Error al editar producto");
+      }
+      const data = await respuesta.json();
+      setProductos((prevProductos) =>
+        prevProductos.map((prod) =>
+          prod.id === data.id ? { ...data, img: limpiarUrlImagen(data.img) } : prod
+        )
+      );
+      setProductoEditando(null);
+      setOpen(false);
+      toast.success("Producto editado correctamente");
+    } catch (error) {
+      console.error("Error al editar producto:", error);
+      toast.error("Error al editar el producto. Por favor, intenta nuevamente.");
+    }
+  };
+
   return (
     <div className={`min-h-screen p-6 ${theme === 'dark' ? 'bg-gray-900' : 'bg-gray-50'}`}>
       <div className="max-w-6xl mx-auto">
@@ -145,7 +175,18 @@ const eliminarProducto = async (id) => {
                         ${producto.price}
                       </p>
                       <div className="flex space-x-2">
-                        <button className="flex-1 bg-blue-500 text-white px-3 py-2 rounded-md hover:bg-blue-600 transition-colors duration-200 text-sm">
+                        <button
+                          onClick={() => {
+                            
+                            setProductoEditando({
+                              ...producto,
+                              name: producto.name || producto.product,
+                              product: producto.product || producto.name, 
+                            });
+                            setOpen(true);
+                          }}
+                          className="flex-1 bg-blue-500 text-white px-3 py-2 rounded-md hover:bg-blue-600 transition-colors duration-200 text-sm"
+                        >
                           Editar
                         </button>
                         <button 
@@ -165,7 +206,10 @@ const eliminarProducto = async (id) => {
 
         <div className="text-center mb-6">
           <button
-            onClick={() => setOpen(true)}
+            onClick={() => {
+              setProductoEditando(null); 
+              setOpen(true);
+            }}
             className="bg-green-500 text-white px-6 py-3 rounded-lg hover:bg-green-600 transition-colors duration-200 font-medium text-lg"
           >
             + Agregar producto nuevo
@@ -174,7 +218,15 @@ const eliminarProducto = async (id) => {
 
         {open && (
           <div className={`rounded-lg shadow-lg p-6 ${theme === 'dark' ? 'bg-gray-800' : 'bg-white'}`}>
-            <FormularioProducto onAgregar={agregarProducto} />
+            <FormularioProducto
+              key={productoEditando ? productoEditando.id : 'nuevo'}
+              onAgregar={productoEditando ? editarProducto : agregarProducto}
+              producto={productoEditando}
+              onCancel={() => {
+                setProductoEditando(null);
+                setOpen(false);
+              }}
+            />
           </div>
         )}
       </div>
