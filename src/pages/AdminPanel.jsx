@@ -27,6 +27,7 @@ const AdminPanel = () => {
           // Limpiar las URLs de las imágenes al cargar los datos
           const productosLimpios = data.map((producto) => ({
             ...producto,
+            id: String(producto.id), 
             img: limpiarUrlImagen(producto.img),
           }));
 
@@ -101,6 +102,13 @@ const eliminarProducto = async (id) => {
   // Función para editar un producto
   const editarProducto = async (productoEditado) => {
     try {
+      const id = String(productoEditado.id); 
+          const productoParaEnviar = {
+      ...productoEditado,
+      id,
+    };
+
+
       const respuesta = await fetch(`https://6814d2a7225ff1af162a3ac3.mockapi.io/ecommerce/${productoEditado.id}`, {
         method: "PUT",
         headers: {
@@ -114,7 +122,7 @@ const eliminarProducto = async (id) => {
       const data = await respuesta.json();
       setProductos((prevProductos) =>
         prevProductos.map((prod) =>
-          prod.id === data.id ? { ...data, img: limpiarUrlImagen(data.img) } : prod
+          prod.id == data.id ? { ...data, img: limpiarUrlImagen(data.img) } : prod
         )
       );
       setProductoEditando(null);
@@ -180,7 +188,7 @@ const eliminarProducto = async (id) => {
                             
                             setProductoEditando({
                               ...producto,
-                              name: producto.name || producto.product,
+                              // name: producto.name || producto.product,
                               product: producto.product || producto.name, 
                             });
                             setOpen(true);
