@@ -54,6 +54,13 @@ El acceso es siempre es con el Login, y si no estas registrado, te deriva al Reg
  </p>
 📁 Estructura del Proyecto
 
+Aca dejo dos usuarios logueados:
+email: mar@sic.com
+password: pass123  Para users.
+
+email: rio@gma.com
+password: pass123  Para admins.
+
 ```
 tt-preentrega/
 ├── public/
