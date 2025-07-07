@@ -31,23 +31,24 @@ function App() {
   useEffect(() => {
     console.log("App - useEffect ejecutado"); // Debug
     console.log("App - location.search:", location.search); // Debug
+    console.log("App - location.pathname:", location.pathname); // Debug
     
     const urlParams = new URLSearchParams(location.search);
     const redirectTo = urlParams.get('redirect');
     console.log("App - parámetro redirect:", redirectTo); // Debug
     
-    if (redirectTo) {
-      console.log("App - Redirigiendo desde URL param a:", redirectTo); // Debug
+    if (redirectTo === 'register') {
+      console.log("App - Detectado parámetro redirect=register"); // Debug
+      console.log("App - Navegando a /register..."); // Debug
       
-      // Limpiar el parámetro de la URL y navegar a la ruta deseada
-      const cleanPath = location.pathname;
-      console.log("App - cleanPath:", cleanPath); // Debug
+      // Limpiar la URL y navegar
+      navigate('/register', { replace: true });
       
-      // Usar navigate para redirección interna sin recargar la página
-      navigate(`/${redirectTo}`, { replace: true });
-      console.log("App - Navegando a:", `/${redirectTo}`); // Debug
+      console.log("App - Navegación ejecutada"); // Debug
+    } else if (redirectTo) {
+      console.log("App - Parámetro redirect no reconocido:", redirectTo); // Debug
     } else {
-      console.log("App - No hay parámetro redirect en la URL"); // Debug
+      console.log("App - No hay parámetro redirect=register en la URL"); // Debug
     }
   }, [location.search, navigate]);
 

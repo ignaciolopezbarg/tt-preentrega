@@ -197,15 +197,12 @@ function Login() {
                 className="text-blue-600 cursor-pointer hover:underline"
                 onClick={() => {
                   logout();
-                  // En producción usar localStorage + redirección a base
+                  // Unificar estrategia: usar parámetros de URL en producción
                   const isProduction = window.location.hostname !== 'localhost';
                   if (isProduction) {
                     const baseUrl = import.meta.env.BASE_URL || '/';
-                    const basePageUrl = `${window.location.origin}${baseUrl}`;
-                    console.log("Link - Redirigiendo a página base:", basePageUrl); // Debug
-                    
-                    localStorage.setItem('redirectTo', '/register');
-                    console.log("Link - Guardado en localStorage - redirectTo:", localStorage.getItem('redirectTo')); // Debug
+                    const basePageUrl = `${window.location.origin}${baseUrl}?redirect=register`;
+                    console.log("Link - Redirigiendo a página base con parámetro:", basePageUrl); // Debug
                     
                     setTimeout(() => {
                       console.log("Link - Ejecutando redirección a:", basePageUrl); // Debug

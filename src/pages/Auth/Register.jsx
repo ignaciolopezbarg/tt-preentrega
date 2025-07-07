@@ -5,6 +5,7 @@ import { AuthContext } from "../../context/AuthContext";
 import Footer from "../../components/Footer";
 
 const Register = () => {
+  console.log("Register - Componente montado"); // Debug
   const navigate = useNavigate();
   const { login, justLoggedOut, setJustLoggedOut } = useContext(AuthContext);
 
@@ -16,6 +17,7 @@ const Register = () => {
 
   // Limpiar los campos si se acaba de hacer logout o al entrar a la página
   useEffect(() => {
+    console.log("Register - useEffect ejecutado"); // Debug
     setName("");
     setEmail("");
     setPassword("");
