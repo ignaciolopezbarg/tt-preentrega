@@ -5,21 +5,36 @@ Proyecto realizado para el curso Talento Tech - React con Vite.
 Este repositorio contiene un ecommerce simple para la venta de frutas y verduras.
 
 🚀 Tecnologías utilizadas
-React
-Context API
-Vite
-JavaScript
-CSS
-HTML
-Tailwind CSS
-date-fns
-Toastify
-SweetAlert
+- React
+- Context API
+- Vite
+- JavaScript
+- CSS
+- HTML
+- Tailwind CSS
+- date-fns
+- Toastify
+- SweetAlert2
+- Lucide React (íconos)
+- MockAPI (para persistencia de datos)
+- Framer Motion (animaciones)
+- React Router DOM
 
 🛒 Descripción
 Aplicación web de ecommerce que permite a los usuarios navegar, seleccionar y comprar frutas y verduras frescas. Incluye funcionalidades básicas de carrito de compras y gestión de productos.
-Permite ademas dividir el tipo de persona que accede en dos categorias, usuario, donde puede realizar compras, accediendo al panel de ofertas de acuerdo a la zona de residencia y el dia de la semana. La otra categoria de persona es la de administrador, que permite que se puedan agregar productos, editarlos y borrarlos.
-A la aplicacion de puede acceder en el modo de desarrollo desde la terminal, con el localhost, o en modo produccion desde la url de GitHub-pages.
+
+**Características principales:**
+- Permite dividir el tipo de persona que accede en dos categorías: usuario y administrador
+- **Usuario**: puede realizar compras, accediendo al panel de ofertas de acuerdo a la zona de residencia y el día de la semana
+- **Administrador**: permite agregar productos, editarlos y borrarlos
+- **Sistema de valoración**: Los usuarios pueden valorar su experiencia con íconos interactivos (Disconforme, Conforme, Muy Satisfecho) que se guardan en MockAPI
+- **Responsive Design**: Adaptado para móviles, tablets y desktop
+- La aplicación se puede acceder en modo desarrollo desde localhost o en producción desde GitHub Pages
+
+**APIs utilizadas:**
+- MockAPI para productos: https://6814d2a7225ff1af162a3ac3.mockapi.io/ecommerce
+- MockAPI para usuarios: https://683f3f8b1cd60dca33dec719.mockapi.io/users  
+- MockAPI para likes: https://686be2ca14219674dcc67d83.mockapi.io/likes
 
 ⚙️ Instalación
 Clona el repositorio:
@@ -36,16 +51,15 @@ Inicia la aplicación:
 bash
 npm run dev
 💻 Uso
-Accede a la aplicación en tu navegador en http://localhost:5173 (o el puerto que indique Vite).
-Tambien puedes acceder, con https://ignaciolopezbarg.github.io/tt-preentrega, que es el deploy hecho con GitHub-pages.
-Navega por el catálogo de productos.
-Agrega productos al carrito y finaliza la compra.
-Si eres admin, podras agregar, editar y eliminar productos.
-Tanto los productos, como el tipo de usuarios, estan alojados en dos bases de mockapi, siendo las mismas
-https://6814d2a7225ff1af162a3ac3.mockapi.io/ecommerce para los productos
-https://683f3f8b1cd60dca33dec719.mockapi.io/users para los usuarios
+1. Accede a la aplicación en tu navegador en http://localhost:5173 (o el puerto que indique Vite)
+2. También puedes acceder en producción: https://ignaciolopezbarg.github.io/tt-preentrega
+3. Navega por el catálogo de productos
+4. Agrega productos al carrito y finaliza la compra
+5. Si eres admin, podrás agregar, editar y eliminar productos
+6. **Nuevo**: Al finalizar una compra, valora tu experiencia con los íconos de satisfacción
 
-El acceso es siempre es con el Login, y si no estas registrado, te deriva al Registro, quedando todo almacenado en la base de mockapi.
+**Acceso al sistema:**
+El acceso es siempre con Login. Si no estás registrado, te deriva al Registro, quedando todo almacenado en MockAPI.
 
 <p align = "center" >
 <img src="public/images/Login.png" width= "200" alt="pantalla del login">
@@ -54,12 +68,13 @@ El acceso es siempre es con el Login, y si no estas registrado, te deriva al Reg
  </p>
 📁 Estructura del Proyecto
 
-Aca dejo dos usuarios logueados:
-email: mar@sic.com
-password: pass123  Para users.
-
-email: rio@gma.com
-password: pass123  Para admins.
+**Usuarios de prueba:**
+- **Usuario regular**: 
+  - Email: mar@sic.com
+  - Password: pass123
+- **Administrador**: 
+  - Email: rio@gma.com  
+  - Password: pass123
 
 ```
 tt-preentrega/
@@ -81,6 +96,7 @@ tt-preentrega/
     ├── OutofPath/
     ├── components/
     │   ├── Cart.jsx
+    │   ├── ContadorLikes.jsx
     │   ├── Footer.jsx
     │   ├── FormularioProducto.jsx
     │   ├── Header.jsx
@@ -108,7 +124,7 @@ tt-preentrega/
     │   ├── NotFound.jsx
     │   └── ProductDetail.jsx
     ├── postcss.config.js
-    ├── Readme.md
+    ├── README.md
     ├── styles/
     │   └── cart.css
     ├── tailwind.config.js

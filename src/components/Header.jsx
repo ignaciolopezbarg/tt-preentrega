@@ -6,7 +6,7 @@ import { CartContext } from "../context/CartContext.jsx";
 import Cart from "./Cart";
 import "../styles/cart.css";
 
-function Header({ user, login, logout }) {
+function Header({ user, logout }) {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const { theme } = useContext(ThemeContext);
   const navigate = useNavigate();
