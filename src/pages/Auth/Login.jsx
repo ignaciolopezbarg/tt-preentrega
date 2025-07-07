@@ -69,15 +69,11 @@ function Login() {
         
         setTimeout(() => {
           console.log("Navegando a /register"); // Debug
-          if (isProduction) {
-            // En producción usar window.location.href
-            console.log("Usando window.location.href para producción"); // Debug
-            window.location.href = `${window.location.origin}${import.meta.env.BASE_URL}register`;
-          } else {
-            // En desarrollo usar navigate
-            console.log("Usando navigate para desarrollo"); // Debug
-            navigate("/register");
-          }
+          console.log("BASE_URL:", import.meta.env.BASE_URL); // Debug adicional
+          console.log("Estamos en producción:", isProduction); // Debug
+          
+          // Usar siempre navigate, que debería funcionar con la configuración de Vite
+          navigate("/register");
         }, 1500);
       }
     } catch (error) {
@@ -99,15 +95,11 @@ function Login() {
       // En caso de error de conexión, también redirigir al registro
       setTimeout(() => {
         console.log("Error - navegando a /register"); // Debug
-        if (isProduction) {
-          // En producción usar window.location.href
-          console.log("Error - usando window.location.href para producción"); // Debug
-          window.location.href = `${window.location.origin}${import.meta.env.BASE_URL}register`;
-        } else {
-          // En desarrollo usar navigate
-          console.log("Error - usando navigate para desarrollo"); // Debug
-          navigate("/register");
-        }
+        console.log("Error - BASE_URL:", import.meta.env.BASE_URL); // Debug adicional
+        console.log("Error - estamos en producción:", isProduction); // Debug
+        
+        // Usar siempre navigate, que debería funcionar con la configuración de Vite
+        navigate("/register");
       }, 2000);
     }
   };
@@ -175,12 +167,8 @@ function Login() {
                 className="text-blue-600 cursor-pointer hover:underline"
                 onClick={() => {
                   logout();
-                  const isProduction = window.location.hostname !== 'localhost';
-                  if (isProduction) {
-                    window.location.href = `${window.location.origin}${import.meta.env.BASE_URL}register`;
-                  } else {
-                    navigate("/register");
-                  }
+                  // Usar siempre navigate, que debería funcionar con la configuración de Vite
+                  navigate("/register");
                 }}
               >
                 Registrate acá
