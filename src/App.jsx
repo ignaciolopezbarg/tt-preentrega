@@ -27,28 +27,29 @@ function App() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  // Manejar redirección desde localStorage para producción
+  // Manejar redirección desde parámetros de URL para producción
   useEffect(() => {
     console.log("App - useEffect ejecutado"); // Debug
-    const redirectTo = localStorage.getItem('redirectTo');
-    console.log("App - localStorage redirectTo:", redirectTo); // Debug
+    console.log("App - location.search:", location.search); // Debug
+    
+    const urlParams = new URLSearchParams(location.search);
+    const redirectTo = urlParams.get('redirect');
+    console.log("App - parámetro redirect:", redirectTo); // Debug
     
     if (redirectTo) {
-      console.log("App - Redirigiendo desde localStorage a:", redirectTo); // Debug
-      localStorage.removeItem('redirectTo');
+      console.log("App - Redirigiendo desde URL param a:", redirectTo); // Debug
       
-      // Usar window.location.replace para forzar redirección completa
-      const baseUrl = import.meta.env.BASE_URL || '/';
-      const fullUrl = `${window.location.origin}${baseUrl}${redirectTo.startsWith('/') ? redirectTo.slice(1) : redirectTo}`;
-      console.log("App - URL completa construida:", fullUrl); // Debug
-      console.log("App - BASE_URL value:", import.meta.env.BASE_URL); // Debug adicional
+      // Limpiar el parámetro de la URL y navegar a la ruta deseada
+      const cleanPath = location.pathname;
+      console.log("App - cleanPath:", cleanPath); // Debug
       
-      console.log("App - Ejecutando window.location.replace a:", fullUrl); // Debug
-      window.location.replace(fullUrl);
+      // Usar navigate para redirección interna sin recargar la página
+      navigate(`/${redirectTo}`, { replace: true });
+      console.log("App - Navegando a:", `/${redirectTo}`); // Debug
     } else {
-      console.log("App - No hay redirección pendiente en localStorage"); // Debug
+      console.log("App - No hay parámetro redirect en la URL"); // Debug
     }
-  }, []);
+  }, [location.search, navigate]);
 
   const hideHeader =
     location.pathname === "/login" || location.pathname === "/register";

@@ -78,15 +78,11 @@ function Login() {
           console.log("Estamos en producción:", isProduction); // Debug
           console.log("URL actual antes de navigate:", window.location.href); // Debug
           
-          // Intentar ir directamente a la base URL y dejar que el 404.html maneje el routing
+          // Intentar ir directamente a la base URL con parámetro de redirección
           if (isProduction) {
             const baseUrl = import.meta.env.BASE_URL || '/';
-            const basePageUrl = `${window.location.origin}${baseUrl}`;
-            console.log("Redirigiendo a página base:", basePageUrl); // Debug
-            
-            // Guardar en localStorage que queremos ir a register
-            localStorage.setItem('redirectTo', '/register');
-            console.log("Guardado en localStorage - redirectTo:", localStorage.getItem('redirectTo')); // Debug
+            const basePageUrl = `${window.location.origin}${baseUrl}?redirect=register`;
+            console.log("Redirigiendo a página base con parámetro:", basePageUrl); // Debug
             
             setTimeout(() => {
               console.log("Ejecutando redirección a:", basePageUrl); // Debug
@@ -120,15 +116,11 @@ function Login() {
         console.log("Error - BASE_URL:", import.meta.env.BASE_URL); // Debug adicional
         console.log("Error - estamos en producción:", isProduction); // Debug
         
-        // Intentar ir directamente a la base URL y dejar que el 404.html maneje el routing
+        // Intentar ir directamente a la base URL con parámetro de redirección
         if (isProduction) {
           const baseUrl = import.meta.env.BASE_URL || '/';
-          const basePageUrl = `${window.location.origin}${baseUrl}`;
-          console.log("Error - Redirigiendo a página base:", basePageUrl); // Debug
-          
-          // Guardar en localStorage que queremos ir a register
-          localStorage.setItem('redirectTo', '/register');
-          console.log("Error - Guardado en localStorage - redirectTo:", localStorage.getItem('redirectTo')); // Debug
+          const basePageUrl = `${window.location.origin}${baseUrl}?redirect=register`;
+          console.log("Error - Redirigiendo a página base con parámetro:", basePageUrl); // Debug
           
           setTimeout(() => {
             console.log("Error - Ejecutando redirección a:", basePageUrl); // Debug
