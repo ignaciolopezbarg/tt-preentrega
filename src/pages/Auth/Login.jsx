@@ -35,26 +35,41 @@ function Login() {
     }
 
     try {
+      console.log("Intentando login con:", email); // Debug
       const response = await fetch(API_URL);
       if (!response.ok) throw new Error("Error al obtener usuarios.");
 
       const users = await response.json();
+      console.log("Usuarios obtenidos:", users.length); // Debug
 
       const foundUser = users.find(
         (u) => u.email === email && u.password === password
       );
 
       if (foundUser) {
+        console.log("Usuario encontrado:", foundUser.email); // Debug
         toast.success("¡Bienvenido, " + (foundUser.name || foundUser.email) + "!");
         login(foundUser);
         navigate(foundUser.role === "admin" ? "/admin-panel" : "/user");
       } else {
+        console.log("Usuario no encontrado, redirigiendo al registro..."); // Debug
         toast.error("Usuario no encontrado. Redirigiendo al registro...");
-        navigate("/register");
+        
+        // Usar navegación normal de React Router
+        setTimeout(() => {
+          console.log("Navegando a /register"); // Debug
+          navigate("/register");
+        }, 1500);
       }
     } catch (error) {
       console.error("Error en login:", error);
       toast.error("Error al iniciar sesión. Intenta más tarde.");
+      
+      // En caso de error de conexión, también redirigir al registro
+      setTimeout(() => {
+        console.log("Error - navegando a /register"); // Debug
+        navigate("/register");
+      }, 2000);
     }
   };
 
