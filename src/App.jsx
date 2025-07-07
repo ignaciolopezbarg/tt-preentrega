@@ -41,11 +41,10 @@ function App() {
       const baseUrl = import.meta.env.BASE_URL || '/';
       const fullUrl = `${window.location.origin}${baseUrl}${redirectTo.startsWith('/') ? redirectTo.slice(1) : redirectTo}`;
       console.log("App - URL completa construida:", fullUrl); // Debug
+      console.log("App - BASE_URL value:", import.meta.env.BASE_URL); // Debug adicional
       
-      setTimeout(() => {
-        console.log("App - Ejecutando window.location.replace a:", fullUrl); // Debug
-        window.location.replace(fullUrl);
-      }, 100);
+      console.log("App - Ejecutando window.location.replace a:", fullUrl); // Debug
+      window.location.replace(fullUrl);
     } else {
       console.log("App - No hay redirección pendiente en localStorage"); // Debug
     }
