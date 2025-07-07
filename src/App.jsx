@@ -26,9 +26,17 @@ function App() {
   const { user, logout, login } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
-   
 
-  
+  // Manejar redirección desde localStorage para producción
+  useEffect(() => {
+    const redirectTo = localStorage.getItem('redirectTo');
+    if (redirectTo) {
+      console.log("App - Redirigiendo desde localStorage a:", redirectTo); // Debug
+      localStorage.removeItem('redirectTo');
+      navigate(redirectTo);
+    }
+  }, [navigate]);
+
   const hideHeader =
     location.pathname === "/login" || location.pathname === "/register";
 
