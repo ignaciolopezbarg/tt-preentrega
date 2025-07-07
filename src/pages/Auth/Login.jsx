@@ -21,8 +21,11 @@ function Login() {
   }, [user]);
 
   useEffect(() => {
+    console.log("useEffect user change - user:", user); // Debug
     if (user) {
-      navigate(user.role === "admin" ? "/admin-panel" : "/user");
+      const destination = user.role === "admin" ? "/admin-panel" : "/user";
+      console.log("Navegando a:", destination); // Debug
+      navigate(destination);
     }
   }, [user, navigate]);
 
@@ -71,9 +74,15 @@ function Login() {
           console.log("Navegando a /register"); // Debug
           console.log("BASE_URL:", import.meta.env.BASE_URL); // Debug adicional
           console.log("Estamos en producción:", isProduction); // Debug
+          console.log("URL actual antes de navigate:", window.location.href); // Debug
           
           // Usar siempre navigate, que debería funcionar con la configuración de Vite
           navigate("/register");
+          
+          // Verificar la URL después de navigate
+          setTimeout(() => {
+            console.log("URL actual después de navigate:", window.location.href); // Debug
+          }, 100);
         }, 1500);
       }
     } catch (error) {
