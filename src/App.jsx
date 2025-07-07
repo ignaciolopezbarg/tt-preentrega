@@ -36,11 +36,20 @@ function App() {
     if (redirectTo) {
       console.log("App - Redirigiendo desde localStorage a:", redirectTo); // Debug
       localStorage.removeItem('redirectTo');
-      navigate(redirectTo);
+      
+      // Usar window.location.replace para forzar redirección completa
+      const baseUrl = import.meta.env.BASE_URL || '/';
+      const fullUrl = `${window.location.origin}${baseUrl}${redirectTo.startsWith('/') ? redirectTo.slice(1) : redirectTo}`;
+      console.log("App - URL completa construida:", fullUrl); // Debug
+      
+      setTimeout(() => {
+        console.log("App - Ejecutando window.location.replace a:", fullUrl); // Debug
+        window.location.replace(fullUrl);
+      }, 100);
     } else {
       console.log("App - No hay redirección pendiente en localStorage"); // Debug
     }
-  }, [navigate]);
+  }, []);
 
   const hideHeader =
     location.pathname === "/login" || location.pathname === "/register";
