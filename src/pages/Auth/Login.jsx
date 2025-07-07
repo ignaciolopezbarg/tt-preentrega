@@ -36,8 +36,16 @@ function Login() {
 
     try {
       console.log("Intentando login con:", email); // Debug
+      console.log("URL de API:", API_URL); // Debug adicional
+      console.log("Hostname actual:", window.location.hostname); // Debug para detectar ambiente
+      
       const response = await fetch(API_URL);
-      if (!response.ok) throw new Error("Error al obtener usuarios.");
+      console.log("Response status:", response.status); // Debug adicional
+      console.log("Response ok:", response.ok); // Debug adicional
+      
+      if (!response.ok) {
+        throw new Error(`Error al obtener usuarios. Status: ${response.status}`);
+      }
 
       const users = await response.json();
       console.log("Usuarios obtenidos:", users.length); // Debug
@@ -55,20 +63,51 @@ function Login() {
         console.log("Usuario no encontrado, redirigiendo al registro..."); // Debug
         toast.error("Usuario no encontrado. Redirigiendo al registro...");
         
-        // Usar navegación normal de React Router
+        // Detectar si estamos en producción
+        const isProduction = window.location.hostname !== 'localhost';
+        console.log("Estamos en producción:", isProduction); // Debug
+        
         setTimeout(() => {
           console.log("Navegando a /register"); // Debug
-          navigate("/register");
+          if (isProduction) {
+            // En producción usar window.location.href
+            console.log("Usando window.location.href para producción"); // Debug
+            window.location.href = `${window.location.origin}${import.meta.env.BASE_URL}register`;
+          } else {
+            // En desarrollo usar navigate
+            console.log("Usando navigate para desarrollo"); // Debug
+            navigate("/register");
+          }
         }, 1500);
       }
     } catch (error) {
       console.error("Error en login:", error);
-      toast.error("Error al iniciar sesión. Intenta más tarde.");
+      console.error("Error completo:", error.message); // Debug adicional
+      
+      // Manejar específicamente error 404 de la API
+      if (error.message.includes('Status: 404')) {
+        console.error("Error 404: La API de usuarios no está disponible");
+        toast.error("Error de conexión con la base de datos. Redirigiendo al registro...");
+      } else {
+        toast.error("Error al iniciar sesión. Intenta más tarde.");
+      }
+      
+      // Detectar si estamos en producción
+      const isProduction = window.location.hostname !== 'localhost';
+      console.log("Error - estamos en producción:", isProduction); // Debug
       
       // En caso de error de conexión, también redirigir al registro
       setTimeout(() => {
         console.log("Error - navegando a /register"); // Debug
-        navigate("/register");
+        if (isProduction) {
+          // En producción usar window.location.href
+          console.log("Error - usando window.location.href para producción"); // Debug
+          window.location.href = `${window.location.origin}${import.meta.env.BASE_URL}register`;
+        } else {
+          // En desarrollo usar navigate
+          console.log("Error - usando navigate para desarrollo"); // Debug
+          navigate("/register");
+        }
       }, 2000);
     }
   };
@@ -136,7 +175,12 @@ function Login() {
                 className="text-blue-600 cursor-pointer hover:underline"
                 onClick={() => {
                   logout();
-                  navigate("/register");
+                  const isProduction = window.location.hostname !== 'localhost';
+                  if (isProduction) {
+                    window.location.href = `${window.location.origin}${import.meta.env.BASE_URL}register`;
+                  } else {
+                    navigate("/register");
+                  }
                 }}
               >
                 Registrate acá
