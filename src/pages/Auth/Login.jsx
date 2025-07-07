@@ -86,7 +86,12 @@ function Login() {
             
             // Guardar en localStorage que queremos ir a register
             localStorage.setItem('redirectTo', '/register');
-            window.location.href = basePageUrl;
+            console.log("Guardado en localStorage - redirectTo:", localStorage.getItem('redirectTo')); // Debug
+            
+            setTimeout(() => {
+              console.log("Ejecutando redirección a:", basePageUrl); // Debug
+              window.location.href = basePageUrl;
+            }, 100);
           } else {
             // En desarrollo usar navigate normal
             navigate("/register");
@@ -123,7 +128,12 @@ function Login() {
           
           // Guardar en localStorage que queremos ir a register
           localStorage.setItem('redirectTo', '/register');
-          window.location.href = basePageUrl;
+          console.log("Error - Guardado en localStorage - redirectTo:", localStorage.getItem('redirectTo')); // Debug
+          
+          setTimeout(() => {
+            console.log("Error - Ejecutando redirección a:", basePageUrl); // Debug
+            window.location.href = basePageUrl;
+          }, 100);
         } else {
           // En desarrollo usar navigate normal
           navigate("/register");
@@ -203,7 +213,12 @@ function Login() {
                     console.log("Link - Redirigiendo a página base:", basePageUrl); // Debug
                     
                     localStorage.setItem('redirectTo', '/register');
-                    window.location.href = basePageUrl;
+                    console.log("Link - Guardado en localStorage - redirectTo:", localStorage.getItem('redirectTo')); // Debug
+                    
+                    setTimeout(() => {
+                      console.log("Link - Ejecutando redirección a:", basePageUrl); // Debug
+                      window.location.href = basePageUrl;
+                    }, 100);
                   } else {
                     navigate("/register");
                   }

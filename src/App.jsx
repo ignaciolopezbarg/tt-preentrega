@@ -29,11 +29,16 @@ function App() {
 
   // Manejar redirección desde localStorage para producción
   useEffect(() => {
+    console.log("App - useEffect ejecutado"); // Debug
     const redirectTo = localStorage.getItem('redirectTo');
+    console.log("App - localStorage redirectTo:", redirectTo); // Debug
+    
     if (redirectTo) {
       console.log("App - Redirigiendo desde localStorage a:", redirectTo); // Debug
       localStorage.removeItem('redirectTo');
       navigate(redirectTo);
+    } else {
+      console.log("App - No hay redirección pendiente en localStorage"); // Debug
     }
   }, [navigate]);
 
