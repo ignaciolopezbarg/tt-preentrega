@@ -37,26 +37,26 @@ Aplicación web de ecommerce que permite a los usuarios navegar, seleccionar y c
 - MockAPI para likes: https://686be2ca14219674dcc67d83.mockapi.io/likes
 
 ⚙️ Instalación
-Clona el repositorio:
+Clonar el repositorio:
 bash
 
 git clone https://github.com/ignaciolopezbarg/tt-preentrega.git
-Ingresa a la carpeta del proyecto:
+Ingresar a la carpeta del proyecto:
 bash
 cd tt-preentrega
-Instala las dependencias:
+Instalar las dependencias:
 bash
 npm install
-Inicia la aplicación:
+Iniciar la aplicación:
 bash
 npm run dev
 💻 Uso
-1. Accede a la aplicación en tu navegador en http://localhost:5173 (o el puerto que indique Vite)
+1. Acceder a la aplicación en el navegador en http://localhost:5173 (o el puerto que indique Vite)
 2. También puedes acceder en producción: https://ignaciolopezbarg.github.io/tt-preentrega
-3. Navega por el catálogo de productos
-4. Agrega productos al carrito y finaliza la compra
+3. Navegar por el catálogo de productos
+4. Agregar productos al carrito y finaliza la compra
 5. Si eres admin, podrás agregar, editar y eliminar productos
-6. **Nuevo**: Al finalizar una compra, valora tu experiencia con los íconos de satisfacción
+6. **Likes**: Al finalizar una compra, se puede valorar tu experiencia con los íconos de satisfacción
 
 **Acceso al sistema:**
 El acceso es siempre con Login. Si no estás registrado, te deriva al Registro, quedando todo almacenado en MockAPI.
@@ -66,7 +66,7 @@ El acceso es siempre con Login. Si no estás registrado, te deriva al Registro, 
  <img src="public/images/Usuario.png" width= "200"  alt="pantalla del usuario">
  <img src="public/images/PanelAdmin.png" width= "200" alt="pantalla del admin">
  </p>
-📁 Estructura del Proyecto
+
 
 **Usuarios de prueba:**
 - **Usuario regular**: 
@@ -76,9 +76,24 @@ El acceso es siempre con Login. Si no estás registrado, te deriva al Registro, 
   - Email: rio@gma.com  
   - Password: pass123
 
+## 🔗 Rutas disponibles
+
+**Desarrollo (localhost:5173):**
+- Producto por ID: `http://localhost:5173/products/:id`
+- Producto por nombre: `http://localhost:5173/products/product/:nombre`
+- Productos por categoría: `http://localhost:5173/products/category/:categoria`
+  - Categorías disponibles: `frutas`, `verduras`, `citricos`
+
+**Producción (GitHub Pages):**
+- Producto por ID: `https://ignaciolopezbarg.github.io/tt-preentrega/products/:id`
+- Producto por nombre: `https://ignaciolopezbarg.github.io/tt-preentrega/products/product/:nombre`
+- Productos por categoría: `https://ignaciolopezbarg.github.io/tt-preentrega/products/category/:categoria`
+  - Categorías disponibles: `frutas`, `verduras`, `citricos`
+
+## 📁 Estructura del Proyecto
+
 ```
 tt-preentrega/
-├── public/
 │   ├── 404.html
 │   ├── loading.gif
 │   ├── logo.jpeg
