@@ -78,13 +78,11 @@ function Login() {
           console.log("Estamos en producción:", isProduction); // Debug
           console.log("URL actual antes de navigate:", window.location.href); // Debug
           
-          // Usar siempre navigate, que debería funcionar con la configuración de Vite
-          navigate("/register");
-          
-          // Verificar la URL después de navigate
-          setTimeout(() => {
-            console.log("URL actual después de navigate:", window.location.href); // Debug
-          }, 100);
+          // FORZAR redirección completa para romper bucle de React Router
+          const baseUrl = import.meta.env.BASE_URL || '/';
+          const registerUrl = `${window.location.origin}${baseUrl}register`;
+          console.log("URL de registro construida:", registerUrl); // Debug
+          window.location.href = registerUrl;
         }, 1500);
       }
     } catch (error) {
@@ -109,8 +107,11 @@ function Login() {
         console.log("Error - BASE_URL:", import.meta.env.BASE_URL); // Debug adicional
         console.log("Error - estamos en producción:", isProduction); // Debug
         
-        // Usar siempre navigate, que debería funcionar con la configuración de Vite
-        navigate("/register");
+        // FORZAR redirección completa para romper bucle de React Router
+        const baseUrl = import.meta.env.BASE_URL || '/';
+        const registerUrl = `${window.location.origin}${baseUrl}register`;
+        console.log("Error - URL de registro construida:", registerUrl); // Debug
+        window.location.href = registerUrl;
       }, 2000);
     }
   };
@@ -178,8 +179,11 @@ function Login() {
                 className="text-blue-600 cursor-pointer hover:underline"
                 onClick={() => {
                   logout();
-                  // Usar siempre navigate, que debería funcionar con la configuración de Vite
-                  navigate("/register");
+                  // FORZAR redirección completa para romper bucle de React Router
+                  const baseUrl = import.meta.env.BASE_URL || '/';
+                  const registerUrl = `${window.location.origin}${baseUrl}register`;
+                  console.log("Link - URL de registro construida:", registerUrl); // Debug
+                  window.location.href = registerUrl;
                 }}
               >
                 Registrate acá

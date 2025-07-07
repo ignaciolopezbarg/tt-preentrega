@@ -21,9 +21,6 @@ const PrivateRoute = ({ children, allowedRoles }) => {
 
   console.log("PrivateRoute - Acceso concedido"); // Debug
   return children;
-
-  console.log("PrivateRoute - Usuario autorizado, mostrando contenido"); // Debug
-  return children;
 };
 
 export default PrivateRoute;
