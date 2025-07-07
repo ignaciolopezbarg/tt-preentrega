@@ -14,6 +14,7 @@ function Login() {
   const [password, setPassword] = useState("");
 
   useEffect(() => {
+    console.log("useEffect reset fields - user:", user); // Debug
     if (!user) {
       setEmail("");
       setPassword("");
@@ -22,6 +23,7 @@ function Login() {
 
   useEffect(() => {
     console.log("useEffect user change - user:", user); // Debug
+    console.log("useEffect user change - location:", window.location.href); // Debug
     if (user) {
       const destination = user.role === "admin" ? "/admin-panel" : "/user";
       console.log("Navegando a:", destination); // Debug

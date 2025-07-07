@@ -7,6 +7,7 @@ const PrivateRoute = ({ children, allowedRoles }) => {
 
   console.log("PrivateRoute - user:", user); // Debug
   console.log("PrivateRoute - allowedRoles:", allowedRoles); // Debug
+  console.log("PrivateRoute - current location:", window.location.href); // Debug
 
   if (!user) {
     console.log("PrivateRoute - Sin usuario, redirigiendo a /login"); // Debug
@@ -17,6 +18,9 @@ const PrivateRoute = ({ children, allowedRoles }) => {
     console.log("PrivateRoute - Usuario sin permisos, redirigiendo a /unauthorized"); // Debug
     return <Navigate to="/unauthorized" />;
   }
+
+  console.log("PrivateRoute - Acceso concedido"); // Debug
+  return children;
 
   console.log("PrivateRoute - Usuario autorizado, mostrando contenido"); // Debug
   return children;
