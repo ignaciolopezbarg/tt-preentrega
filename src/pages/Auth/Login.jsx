@@ -194,9 +194,11 @@ function Login() {
             <p className="mt-4 text-center text-sm text-gray-500">
               ¿No tenés una cuenta?{" "}
               <span
-                className="text-blue-600 cursor-pointer hover:underline"
+                id="registrate-link"
+                className="text-blue-600 cursor-pointer hover:underline font-bold"
                 onMouseEnter={() => console.log("🖱️ Link - Mouse sobre Registrate acá")} // Debug
                 onClick={(e) => {
+                  console.log("🚨🚨🚨 CLICK DETECTADO EN REGISTRATE ACA 🚨🚨🚨"); // Debug MUY VISIBLE
                   e.preventDefault();
                   e.stopPropagation();
                   console.log("🔗 Link - Click en Registrate acá DETECTADO"); // Debug
