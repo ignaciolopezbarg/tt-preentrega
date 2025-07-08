@@ -6,7 +6,7 @@ import { ThemeContext } from "./context/ThemeContext";
 import "./App.css";
 import { AuthContext } from "./context/AuthContext";
 import Header from "./components/Header";
-import Login from "./pages/Auth/Login";
+import UserAuth from "./pages/Auth/UserAuth";
 import Register from "./pages/Auth/Register";
 import Home from "./pages/Home";
 import AdminPanel from "./pages/AdminPanel";
@@ -34,8 +34,7 @@ function App() {
     
     if (redirectTo === 'register') {
       const baseUrl = import.meta.env.BASE_URL || '/';
-      const registerUrl = `${window.location.origin}${baseUrl}register`;
-      window.location.replace(registerUrl);
+      window.location.replace(`${baseUrl}register`);
     }
   }, [location.search]);
 
@@ -47,8 +46,8 @@ function App() {
      
       {!hideHeader && <Header user={user} login={login} logout={logout} />}
       <Routes>
-        <Route path="/" element={<Login key={location.key} />} />
-        <Route path="/login" element={<Login key={location.key} />} />
+        <Route path="/" element={<UserAuth key={location.key} />} />
+        <Route path="/login" element={<UserAuth key={location.key} />} />
         <Route path="/register" element={<Register />} />
         <Route path="/user" element={<Home />} />
         <Route

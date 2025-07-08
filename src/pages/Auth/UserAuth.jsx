@@ -6,10 +6,9 @@ import { AuthContext } from "../../context/AuthContext";
 
 const API_URL = "https://683f3f8b1cd60dca33dec719.mockapi.io/users";
 
-function Login() {
+function UserAuth() {
   const navigate = useNavigate();
   const { user, login, logout } = useContext(AuthContext);
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -29,7 +28,6 @@ function Login() {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-
     if (!email || !password) {
       alert("Por favor completa ambos campos.");
       return;
@@ -37,49 +35,33 @@ function Login() {
 
     try {
       const response = await fetch(API_URL);
-      
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
+      if (!response.ok) throw new Error("Error de conexión");
 
       const users = await response.json();
-      const foundUser = users.find(
-        (user) => user.email === email && user.password === password
-      );
+      const foundUser = users.find(u => u.email === email && u.password === password);
 
       if (foundUser) {
         login(foundUser);
-        toast.success(`¡Bienvenido, ${foundUser.name}!`, {
-          position: "top-right",
-          autoClose: 3000,
-        });
+        toast.success(`¡Bienvenido, ${foundUser.name}!`);
       } else {
-        toast.error("Credenciales incorrectas", {
-          position: "top-right",
-          autoClose: 3000,
-        });
-        
-        // Redirección automática a registro después de 2 segundos
+        toast.error("Email o contraseña incorrectos");
         setTimeout(() => {
-          if (window.location.hostname !== 'localhost') {
-            // En producción, ir directamente a la URL con parámetro
-            window.location.href = `${window.location.origin}${import.meta.env.BASE_URL || '/'}?redirect=register`;
+          const isProduction = window.location.hostname !== 'localhost';
+          if (isProduction) {
+            const baseUrl = import.meta.env.BASE_URL || '/';
+            window.location.replace(`${baseUrl}register`);
           } else {
-            // En desarrollo, usar navigate
             navigate("/register");
           }
         }, 2000);
       }
     } catch (error) {
-      toast.error("Error de conexión. Redirigiendo al registro...", {
-        position: "top-right",
-        autoClose: 3000,
-      });
-      
-      // En caso de error, también redirigir al registro
+      toast.error("Error de conexión. Inténtalo de nuevo.");
       setTimeout(() => {
-        if (window.location.hostname !== 'localhost') {
-          window.location.href = `${window.location.origin}${import.meta.env.BASE_URL || '/'}?redirect=register`;
+        const isProduction = window.location.hostname !== 'localhost';
+        if (isProduction) {
+          const baseUrl = import.meta.env.BASE_URL || '/';
+          window.location.replace(`${baseUrl}register`);
         } else {
           navigate("/register");
         }
@@ -89,44 +71,52 @@ function Login() {
 
   return (
     <div className="min-h-screen flex flex-col justify-between bg-slate-100">
-      <div className="flex-grow flex items-center justify-center px-4 sm:px-6 lg:px-8">
-        <main className="max-w-md w-full space-y-8">
-          <h1 className="text-center text-3xl font-extrabold text-gray-900">
+      <div></div>
+      <div className="flex items-center justify-center">
+        <main className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
+          <h1 className="text-2xl font-bold text-center mb-6 text-gray-800">
             Iniciar Sesión
           </h1>
-          <form className="mt-8 space-y-6" onSubmit={handleLogin}>
+          <form onSubmit={handleLogin}>
+            <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+              Email
+            </label>
             <input
               type="email"
+              id="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="Email"
               required
               className="w-full mb-4 px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
+            <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
+              Contraseña
+            </label>
             <input
               type="password"
+              id="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              placeholder="Contraseña"
               required
               className="w-full mb-6 px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
-
             <button
               type="submit"
               className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-800 transition"
             >
               Ingresar
             </button>
-
             <p className="mt-4 text-center text-sm text-gray-500">
               ¿No tenés una cuenta?{" "}
               <span
                 className="text-blue-600 cursor-pointer hover:underline"
-                onClick={() => {
-                  // Simple redirección - en producción usar window.location
-                  if (window.location.hostname !== 'localhost') {
-                    window.location.href = `${window.location.origin}${import.meta.env.BASE_URL || '/'}?redirect=register`;
+                onClick={(e) => {
+                  e.preventDefault();
+                  logout();
+                  const isProduction = window.location.hostname !== 'localhost';
+                  if (isProduction) {
+                    const baseUrl = import.meta.env.BASE_URL || '/';
+                    window.location.replace(`${baseUrl}register`);
                   } else {
                     navigate("/register");
                   }
@@ -143,4 +133,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default UserAuth;
