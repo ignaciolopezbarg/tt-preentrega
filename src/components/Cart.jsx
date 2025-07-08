@@ -6,7 +6,7 @@ import "../styles/cart.css";
 function Cart({ isOpen, onClose }) {
   const navigate = useNavigate();
   const {
-    cart,
+      cart,
     setCart,
     descuento,
     incrementQuantity,
