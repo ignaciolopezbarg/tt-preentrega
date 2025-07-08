@@ -40,11 +40,15 @@ function App() {
     
     if (redirectTo === 'register') {
       console.log("✅ App - Detectado parámetro redirect=register"); // Debug
-      console.log("🚀 App - Iniciando redirección con navigate()..."); // Debug
+      console.log("🚀 App - Cambiando a window.location.replace..."); // Debug
       
-      // Probar con navigate() en lugar de window.location.replace
-      console.log("⏰ App - Ejecutando navigate('/register')"); // Debug
-      navigate('/register', { replace: true });
+      // Usar window.location.replace con URL completa
+      const baseUrl = import.meta.env.BASE_URL || '/';
+      const registerUrl = `${window.location.origin}${baseUrl}register`;
+      console.log("🎯 App - URL de destino:", registerUrl); // Debug
+      
+      console.log("⏰ App - Ejecutando window.location.replace"); // Debug
+      window.location.replace(registerUrl);
       
     } else if (redirectTo) {
       console.log("❌ App - Parámetro redirect no reconocido:", redirectTo); // Debug
