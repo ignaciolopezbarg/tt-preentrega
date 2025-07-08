@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 import Footer from "../../components/Footer";
 import { AuthContext } from "../../context/AuthContext";
 
+// Siempre usar la URL absoluta de MockAPI para usuarios
 const API_URL = "https://683f3f8b1cd60dca33dec719.mockapi.io/users";
 
 function LoginComponent() {
@@ -38,7 +39,12 @@ function LoginComponent() {
       if (!response.ok) throw new Error("Error de conexión");
 
       const users = await response.json();
-      const foundUser = users.find(u => u.email === email && u.password === password);
+      // Filtro robusto: compara email y password sin espacios y en minúsculas
+      const foundUser = users.find(
+        (u) =>
+          u.email.trim().toLowerCase() === email.trim().toLowerCase() &&
+          u.password === password
+      );
 
       if (foundUser) {
         login(foundUser);
@@ -46,27 +52,13 @@ function LoginComponent() {
       } else {
         toast.error("Email o contraseña incorrectos");
         setTimeout(() => {
-          const isProduction = window.location.hostname !== 'localhost';
-          if (isProduction) {
-            const baseUrl = import.meta.env.BASE_URL || '/';
-            const basePageUrl = `${window.location.origin}${baseUrl}?redirect=register`;
-            window.location.replace(basePageUrl);
-          } else {
-            navigate("/register");
-          }
+          navigate("/register");
         }, 2000);
       }
     } catch (error) {
       toast.error("Error de conexión. Inténtalo de nuevo.");
       setTimeout(() => {
-        const isProduction = window.location.hostname !== 'localhost';
-        if (isProduction) {
-          const baseUrl = import.meta.env.BASE_URL || '/';
-          const basePageUrl = `${window.location.origin}${baseUrl}?redirect=register`;
-          window.location.replace(basePageUrl);
-        } else {
-          navigate("/register");
-        }
+        navigate("/register");
       }, 2000);
     }
   };
@@ -80,7 +72,10 @@ function LoginComponent() {
             Iniciar Sesión
           </h1>
           <form onSubmit={handleLogin}>
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+            <label
+              htmlFor="email"
+              className="block text-sm font-medium text-gray-700 mb-1"
+            >
               Email
             </label>
             <input
@@ -91,7 +86,10 @@ function LoginComponent() {
               required
               className="w-full mb-4 px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
-            <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
+            <label
+              htmlFor="password"
+              className="block text-sm font-medium text-gray-700 mb-1"
+            >
               Contraseña
             </label>
             <input
@@ -115,13 +113,7 @@ function LoginComponent() {
                 onClick={(e) => {
                   e.preventDefault();
                   logout();
-                  const isProduction = window.location.hostname !== 'localhost';
-                  if (isProduction) {
-                    const redirectUrl = `${window.location.origin}${import.meta.env.BASE_URL || '/'}?redirect=register`;
-                    window.location.href = redirectUrl;
-                  } else {
-                    navigate("/register");
-                  }
+                  navigate("/register");
                 }}
               >
                 Registrate acá

@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext } from "react";
 import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -6,7 +6,7 @@ import { ThemeContext } from "./context/ThemeContext";
 import "./App.css";
 import { AuthContext } from "./context/AuthContext";
 import Header from "./components/Header";
-import UserAuth from "./pages/Auth/UserAuth";
+import LoginComponent from "./pages/Auth/Login";
 import Register from "./pages/Auth/Register";
 import Home from "./pages/Home";
 import AdminPanel from "./pages/AdminPanel";
@@ -32,11 +32,10 @@ function App() {
 
   return (
     <div className={`min-h-screen ${themeClass}`}>
-     
       {!hideHeader && <Header user={user} login={login} logout={logout} />}
       <Routes>
-        <Route path="/" element={<UserAuth key={location.key} />} />
-        <Route path="/login" element={<UserAuth key={location.key} />} />
+        <Route path="/" element={<LoginComponent key={location.key} />} />
+        <Route path="/login" element={<LoginComponent key={location.key} />} />
         <Route path="/register" element={<Register />} />
         <Route path="/user" element={<Home />} />
         <Route
@@ -50,9 +49,7 @@ function App() {
         <Route path="/descuentos" element={<FechaDescuento />} />
         <Route path="/acercade" element={<AboutUs />} />
         <Route path="/contacto" element={<Contacts />} />
-
         <Route path="/checkout" element={<Checkout />} />
-
         <Route path="/products/:id" element={<ProductDetail />} />
         <Route path="/products/product/:product" element={<ProductDetail />} />
         <Route

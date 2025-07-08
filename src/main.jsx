@@ -9,7 +9,7 @@ import { AuthProvider } from "./context/AuthContext.jsx";
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <AuthProvider>
-       <BrowserRouter basename={import.meta.env.BASE_URL}>
+      <BrowserRouter>
         <ThemeProvider>
           <CartProvider>
             <App />
