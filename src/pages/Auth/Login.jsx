@@ -196,6 +196,7 @@ function Login() {
               <span
                 id="registrate-link"
                 className="text-blue-600 cursor-pointer hover:underline font-bold"
+                style={{ backgroundColor: 'yellow', padding: '5px', border: '2px solid red' }}
                 onMouseEnter={() => console.log("🖱️ Link - Mouse sobre Registrate acá")} // Debug
                 onClick={(e) => {
                   console.log("🚨🚨🚨 CLICK DETECTADO EN REGISTRATE ACA 🚨🚨🚨"); // Debug MUY VISIBLE
@@ -225,6 +226,38 @@ function Login() {
                 Registrate acá
               </span>
             </p>
+            
+            {/* BOTÓN DE PRUEBA MUY VISIBLE */}
+            <button
+              type="button"
+              className="w-full mt-4 bg-red-600 text-white py-2 rounded-lg hover:bg-red-800 transition font-bold"
+              onClick={(e) => {
+                console.log("🚨🚨🚨 CLICK DETECTADO EN BOTÓN DE PRUEBA 🚨🚨🚨"); // Debug MUY VISIBLE
+                e.preventDefault();
+                e.stopPropagation();
+                console.log("🔗 Botón - Click en Registrate acá DETECTADO"); // Debug
+                
+                logout();
+                
+                // Detectar si estamos en producción
+                const isProduction = window.location.hostname !== 'localhost';
+                console.log("🌐 Botón - Estamos en producción:", isProduction); // Debug
+                
+                if (isProduction) {
+                  // Ir directamente a la URL base con parámetro
+                  const redirectUrl = `${window.location.origin}${import.meta.env.BASE_URL || '/'}?redirect=register`;
+                  console.log("🎯 Botón - Redirigiendo a:", redirectUrl); // Debug
+                  
+                  console.log("🚀 Botón - Ejecutando window.location.href"); // Debug
+                  window.location.href = redirectUrl;
+                } else {
+                  console.log("🚀 Botón - Ejecutando navigate(/register)"); // Debug
+                  navigate("/register");
+                }
+              }}
+            >
+              🚨 CLICK AQUÍ PARA REGISTRARTE 🚨
+            </button>
           </form>
         </main>
       </div>
