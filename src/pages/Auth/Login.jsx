@@ -13,12 +13,13 @@ function LoginComponent() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  // Limpiar campos solo al montar si NO hay usuario
   useEffect(() => {
     if (!user) {
       setEmail("");
       setPassword("");
     }
-  }, [user]);
+  }, []);
 
   useEffect(() => {
     if (user) {
