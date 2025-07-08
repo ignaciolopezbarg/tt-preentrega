@@ -29,33 +29,15 @@ function App() {
 
   // Manejar redirección desde parámetros de URL para producción
   useEffect(() => {
-    console.log("🔍 App - useEffect ejecutado"); // Debug
-    console.log("🔍 App - location.search:", location.search); // Debug
-    console.log("🔍 App - location.pathname:", location.pathname); // Debug
-    console.log("🔍 App - window.location.href:", window.location.href); // Debug
-    
     const urlParams = new URLSearchParams(location.search);
     const redirectTo = urlParams.get('redirect');
-    console.log("🔍 App - parámetro redirect:", redirectTo); // Debug
     
     if (redirectTo === 'register') {
-      console.log("✅ App - Detectado parámetro redirect=register"); // Debug
-      console.log("🚀 App - Cambiando a window.location.replace..."); // Debug
-      
-      // Usar window.location.replace con URL completa
       const baseUrl = import.meta.env.BASE_URL || '/';
       const registerUrl = `${window.location.origin}${baseUrl}register`;
-      console.log("🎯 App - URL de destino:", registerUrl); // Debug
-      
-      console.log("⏰ App - Ejecutando window.location.replace"); // Debug
       window.location.replace(registerUrl);
-      
-    } else if (redirectTo) {
-      console.log("❌ App - Parámetro redirect no reconocido:", redirectTo); // Debug
-    } else {
-      console.log("⚪ App - No hay parámetro redirect=register en la URL"); // Debug
     }
-  }, [location.search, navigate]);
+  }, [location.search]);
 
   const hideHeader =
     location.pathname === "/login" || location.pathname === "/register";
