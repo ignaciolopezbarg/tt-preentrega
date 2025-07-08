@@ -73,21 +73,18 @@ function Login() {
         console.log("Estamos en producción:", isProduction); // Debug
         
         setTimeout(() => {
-          console.log("Navegando a /register"); // Debug
-          console.log("BASE_URL:", import.meta.env.BASE_URL); // Debug adicional
-          console.log("Estamos en producción:", isProduction); // Debug
-          console.log("URL actual antes de navigate:", window.location.href); // Debug
+          console.log("🔄 Login - Iniciando redirección..."); // Debug
           
-          // Intentar ir directamente a la base URL con parámetro de redirección
+          // Detectar si estamos en producción
+          const isProduction = window.location.hostname !== 'localhost';
+          console.log("🌐 Login - Estamos en producción:", isProduction); // Debug
+          
           if (isProduction) {
-            const baseUrl = import.meta.env.BASE_URL || '/';
-            const basePageUrl = `${window.location.origin}${baseUrl}?redirect=register`;
-            console.log("Redirigiendo a página base con parámetro:", basePageUrl); // Debug
+            // Simplificar: ir directamente a la URL base con parámetro
+            const redirectUrl = `${window.location.origin}${import.meta.env.BASE_URL || '/'}?redirect=register`;
+            console.log("🎯 Login - Redirigiendo a:", redirectUrl); // Debug
             
-            setTimeout(() => {
-              console.log("Ejecutando redirección a:", basePageUrl); // Debug
-              window.location.href = basePageUrl;
-            }, 100);
+            window.location.href = redirectUrl;
           } else {
             // En desarrollo usar navigate normal
             navigate("/register");
@@ -124,7 +121,7 @@ function Login() {
           
           setTimeout(() => {
             console.log("Error - Ejecutando redirección a:", basePageUrl); // Debug
-            window.location.href = basePageUrl;
+            window.location.replace(basePageUrl);
           }, 100);
         } else {
           // En desarrollo usar navigate normal
@@ -196,18 +193,19 @@ function Login() {
               <span
                 className="text-blue-600 cursor-pointer hover:underline"
                 onClick={() => {
+                  console.log("🔗 Link - Click en Registrate acá"); // Debug
                   logout();
-                  // Unificar estrategia: usar parámetros de URL en producción
+                  
+                  // Detectar si estamos en producción
                   const isProduction = window.location.hostname !== 'localhost';
+                  console.log("🌐 Link - Estamos en producción:", isProduction); // Debug
+                  
                   if (isProduction) {
-                    const baseUrl = import.meta.env.BASE_URL || '/';
-                    const basePageUrl = `${window.location.origin}${baseUrl}?redirect=register`;
-                    console.log("Link - Redirigiendo a página base con parámetro:", basePageUrl); // Debug
+                    // Simplificar: ir directamente a la URL base con parámetro
+                    const redirectUrl = `${window.location.origin}${import.meta.env.BASE_URL || '/'}?redirect=register`;
+                    console.log("🎯 Link - Redirigiendo a:", redirectUrl); // Debug
                     
-                    setTimeout(() => {
-                      console.log("Link - Ejecutando redirección a:", basePageUrl); // Debug
-                      window.location.href = basePageUrl;
-                    }, 100);
+                    window.location.href = redirectUrl;
                   } else {
                     navigate("/register");
                   }
