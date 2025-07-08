@@ -27,17 +27,6 @@ function App() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  // Manejar redirección desde parámetros de URL para producción
-  useEffect(() => {
-    const urlParams = new URLSearchParams(location.search);
-    const redirectTo = urlParams.get('redirect');
-    
-    if (redirectTo === 'register') {
-      const baseUrl = import.meta.env.BASE_URL || '/';
-      window.location.replace(`${baseUrl}register`);
-    }
-  }, [location.search]);
-
   const hideHeader =
     location.pathname === "/login" || location.pathname === "/register";
 

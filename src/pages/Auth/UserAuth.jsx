@@ -46,25 +46,13 @@ function UserAuth() {
       } else {
         toast.error("Email o contraseña incorrectos");
         setTimeout(() => {
-          const isProduction = window.location.hostname !== 'localhost';
-          if (isProduction) {
-            const baseUrl = import.meta.env.BASE_URL || '/';
-            window.location.replace(`${baseUrl}register`);
-          } else {
-            navigate("/register");
-          }
+          navigate("/register");
         }, 2000);
       }
     } catch (error) {
       toast.error("Error de conexión. Inténtalo de nuevo.");
       setTimeout(() => {
-        const isProduction = window.location.hostname !== 'localhost';
-        if (isProduction) {
-          const baseUrl = import.meta.env.BASE_URL || '/';
-          window.location.replace(`${baseUrl}register`);
-        } else {
-          navigate("/register");
-        }
+        navigate("/register");
       }, 2000);
     }
   };
@@ -113,13 +101,7 @@ function UserAuth() {
                 onClick={(e) => {
                   e.preventDefault();
                   logout();
-                  const isProduction = window.location.hostname !== 'localhost';
-                  if (isProduction) {
-                    const baseUrl = import.meta.env.BASE_URL || '/';
-                    window.location.replace(`${baseUrl}register`);
-                  } else {
-                    navigate("/register");
-                  }
+                  navigate("/register");
                 }}
               >
                 Registrate acá
