@@ -192,8 +192,11 @@ function Login() {
               ¿No tenés una cuenta?{" "}
               <span
                 className="text-blue-600 cursor-pointer hover:underline"
-                onClick={() => {
-                  console.log("🔗 Link - Click en Registrate acá"); // Debug
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  console.log("🔗 Link - Click en Registrate acá DETECTADO"); // Debug
+                  
                   logout();
                   
                   // Detectar si estamos en producción
@@ -201,12 +204,14 @@ function Login() {
                   console.log("🌐 Link - Estamos en producción:", isProduction); // Debug
                   
                   if (isProduction) {
-                    // Simplificar: ir directamente a la URL base con parámetro
+                    // Ir directamente a la URL base con parámetro
                     const redirectUrl = `${window.location.origin}${import.meta.env.BASE_URL || '/'}?redirect=register`;
                     console.log("🎯 Link - Redirigiendo a:", redirectUrl); // Debug
                     
+                    console.log("🚀 Link - Ejecutando window.location.href"); // Debug
                     window.location.href = redirectUrl;
                   } else {
+                    console.log("🚀 Link - Ejecutando navigate(/register)"); // Debug
                     navigate("/register");
                   }
                 }}
