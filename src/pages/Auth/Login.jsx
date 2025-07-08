@@ -12,6 +12,9 @@ function Login() {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  
+  // Log para confirmar que el componente se renderiza con el onClick correcto
+  console.log("🎪 Login - Component renderizado con onClick link"); // Debug
 
   useEffect(() => {
     console.log("useEffect reset fields - user:", user); // Debug
@@ -192,6 +195,7 @@ function Login() {
               ¿No tenés una cuenta?{" "}
               <span
                 className="text-blue-600 cursor-pointer hover:underline"
+                onMouseEnter={() => console.log("🖱️ Link - Mouse sobre Registrate acá")} // Debug
                 onClick={(e) => {
                   e.preventDefault();
                   e.stopPropagation();
