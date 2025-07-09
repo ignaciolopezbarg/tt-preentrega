@@ -26,7 +26,7 @@ Este repositorio contiene un ecommerce simple para la venta de frutas y verduras
 🛒 Descripción
 Aplicación web de ecommerce que permite a los usuarios navegar, seleccionar y comprar frutas y verduras frescas. Incluye funcionalidades básicas de carrito de compras y gestión de productos.
 
-**Características principales:**
+ **Características principales:**
 
 - Permite dividir el tipo de persona que accede en dos categorías: usuario y administrador
 - **Usuario**: puede realizar compras, accediendo al panel de ofertas de acuerdo a la zona de residencia y el día de la semana
