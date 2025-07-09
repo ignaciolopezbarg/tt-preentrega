@@ -2,7 +2,7 @@ import React from "react";
 
 function Footer() {
   return (
-    <footer className="bg-gray-300 p-2 sm:p-4 mx-2 sm:mx-8 flex flex-col md:flex-row md:justify-between md:items-center gap-4 lg:gap-0 mt-12 mb-4 shadow-t border-t border-gray-200 relative overflow-hidden w-full rounded-xl">
+    <footer className="bg-gray-300 p-2 sm:p-4 mx-2 sm:mx-auto flex flex-col md:flex-row md:justify-between md:items-center gap-4 lg:gap-0 mt-12 mb-4 shadow-t border-t border-gray-200 relative overflow-hidden w-full max-w-7xl rounded-xl">
       {/* Logo repetido en el fondo */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none opacity-10 rounded-xl">
         <div

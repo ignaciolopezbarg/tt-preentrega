@@ -10,13 +10,13 @@ import LoginComponent from "./pages/Auth/Login";
 import Register from "./pages/Auth/Register";
 import Home from "./pages/Home";
 import AdminPanel from "./pages/AdminPanel";
-import Contacts from "./pages/Contacts";
 import NotFound from "./pages/NotFound";
 import FechaDescuento from "./pages/FechaDescuento";
 import ProductDetail from "./pages/ProductDetail";
 import AboutUs from "./pages/AboutUs";
 import PrivateRoute from "./components/PrivateRoute";
 import Checkout from "./pages/Checkout";
+import FAQ from "./pages/FAQ";
 
 function App() {
   const { theme } = useContext(ThemeContext);
@@ -48,7 +48,7 @@ function App() {
         />
         <Route path="/descuentos" element={<FechaDescuento />} />
         <Route path="/acercade" element={<AboutUs />} />
-        <Route path="/contacto" element={<Contacts />} />
+        <Route path="/faq" element={<FAQ />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/products/:id" element={<ProductDetail />} />
         <Route path="/products/product/:product" element={<ProductDetail />} />
@@ -56,6 +56,7 @@ function App() {
           path="/products/category/:category"
           element={<ProductDetail />}
         />
+       
         <Route path="*" element={<NotFound />} />
       </Routes>
       <ToastContainer />

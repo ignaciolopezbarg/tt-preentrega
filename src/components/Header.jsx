@@ -45,8 +45,8 @@ function Header({ user, logout }) {
             </Link>
           </li>
           <li className="hover:text-blue-500">
-            <Link to="/contacto" className="hover:text-blue-500 px-2 py-1 rounded transition-colors">
-              Contacts
+            <Link to="/faq" className="hover:text-blue-500 px-2 py-1 rounded transition-colors">
+              FAQ
             </Link>
           </li>
           <li className="cart-nav">
