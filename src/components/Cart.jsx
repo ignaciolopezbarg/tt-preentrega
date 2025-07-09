@@ -6,7 +6,7 @@ import "../styles/cart.css";
 function Cart({ isOpen, onClose }) {
   const navigate = useNavigate();
   const {
-      cart,
+    cart,
     setCart,
     descuento,
     incrementQuantity,
@@ -42,7 +42,7 @@ function Cart({ isOpen, onClose }) {
               {cart.map((item) => (
                 <li key={item.id} className="flex flex-col gap-1">
                   <h2>{item.product}</h2>
-                  <p>Precio: ${item.price}</p>
+                  <p>Precio por KG: ${item.price}</p>
                   <div className="flex items-center gap-2">
                     <button
                       className="w-6 h-6 bg-slate-100 border text-lg rounded hover:bg-slate-200"
