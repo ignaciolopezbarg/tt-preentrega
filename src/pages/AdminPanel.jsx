@@ -58,7 +58,6 @@ const AdminPanel = () => {
       }
       const data = await respuesta.json();
 
-      // Limpiar la URL de la imagen del nuevo producto
       const productoLimpio = {
         ...data,
         img: limpiarUrlImagen(data.img),

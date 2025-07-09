@@ -3,8 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import Footer from "../../components/Footer";
 import { AuthContext } from "../../context/AuthContext";
-
-// Siempre usar la URL absoluta de MockAPI para usuarios
 const API_URL = "https://683f3f8b1cd60dca33dec719.mockapi.io/users";
 
 function LoginComponent() {

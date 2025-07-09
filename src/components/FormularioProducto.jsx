@@ -72,7 +72,7 @@ const FormularioProducto = ({ producto, onAgregar, onCancel }) => {
     if (Object.keys(erroresValidados).length > 0) {
       return;
     }
-    // Si es edición, incluir el id
+    
     if (producto && producto.id) {
       onAgregar({ ...form, id: producto.id });
     } else {
