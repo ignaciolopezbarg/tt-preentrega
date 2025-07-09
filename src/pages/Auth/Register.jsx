@@ -14,7 +14,7 @@ const Register = () => {
   const [gender, setGender] = useState("");
   const [role, setRole] = useState("user");
 
-  // Limpiar los campos si se acaba de hacer logout o al entrar a la página
+  // Limpiar los campos 
   useEffect(() => {
     setName("");
     setEmail("");

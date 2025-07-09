@@ -13,7 +13,6 @@ function LoginComponent() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  // Limpiar campos solo al montar si NO hay usuario
   useEffect(() => {
     if (!user) {
       setEmail("");
@@ -40,7 +39,6 @@ function LoginComponent() {
       if (!response.ok) throw new Error("Error de conexión");
 
       const users = await response.json();
-      // Filtro robusto: compara email y password sin espacios y en minúsculas
       const foundUser = users.find(
         (u) =>
           u.email.trim().toLowerCase() === email.trim().toLowerCase() &&

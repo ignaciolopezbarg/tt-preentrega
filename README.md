@@ -37,23 +37,25 @@ Aplicación web de ecommerce que permite a los usuarios navegar, seleccionar y c
 
 **APIs utilizadas:**
 
-- MockAPI para productos: https://6814d2a7225ff1af162a3ac3.mockapi.io/ecommerce
-- MockAPI para usuarios: https://683f3f8b1cd60dca33dec719.mockapi.io/users
-- MockAPI para likes: https://686be2ca14219674dcc67d83.mockapi.io/likes
+- MockAPI para productos: [https://6814d2a7225ff1af162a3ac3.mockapi.io/ecommerce](https://6814d2a7225ff1af162a3ac3.mockapi.io/ecommerce)
+- MockAPI para usuarios: [https://683f3f8b1cd60dca33dec719.mockapi.io/users](https://683f3f8b1cd60dca33dec719.mockapi.io/users)
+- MockAPI para likes: [https://686be2ca14219674dcc67d83.mockapi.io/likes](https://686be2ca14219674dcc67d83.mockapi.io/likes)
 
 ⚙️ Instalación
 Clonar el repositorio:
-bash
-
+```bash
 git clone https://github.com/ignaciolopezbarg/tt-preentrega.git
+```
 Ingresar a la carpeta del proyecto:
-bash
+```bash
 cd tt-preentrega
+```
 Instalar las dependencias:
-bash
+```bash
 npm install
+```
 Iniciar la aplicación:
-bash
+```bash
 npm run dev
 💻 Uso
 
