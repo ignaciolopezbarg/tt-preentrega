@@ -6,6 +6,7 @@ function AboutUs({  }) {
   return (
     <>
       <h1>Acerca de Nosotros</h1>
+      <h2>PAGINA EN CONSTRUCCION</h2>
       <Footer />
     </>
   );
