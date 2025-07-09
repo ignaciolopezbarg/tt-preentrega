@@ -106,7 +106,7 @@ El acceso es siempre con Login. Si no estás registrado, te deriva al Registro, 
 ## 📁 Estructura del Proyecto
 
 ```
-tt-preentrega/
+t-preentrega/
 ├── dist/
 ├── node_modules/
 ├── public/
@@ -155,6 +155,7 @@ tt-preentrega/
 ├── tailwind.config.js
 └── README.md
 ```
+
 
 👤 Autor
 Ignacio Lopez Barg
